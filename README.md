@@ -1,2 +1,3 @@
 # Group-5-project
-Files for the group project.
+The Unreal Engine project files.
+This is for Group 5 of the game school 1st years spring 2025.
