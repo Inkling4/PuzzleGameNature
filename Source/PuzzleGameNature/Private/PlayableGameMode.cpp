@@ -3,3 +3,10 @@
 
 #include "PlayableGameMode.h"
 
+
+
+void APlayableGameMode::StartPlay()
+{
+	Super::StartPlay();
+	check(GEngine != nullptr);
+}

@@ -13,5 +13,6 @@ UCLASS()
 class PUZZLEGAMENATURE_API APlayableGameMode : public AGameMode
 {
 	GENERATED_BODY()
-	
+	virtual void StartPlay() override;
+
 };
