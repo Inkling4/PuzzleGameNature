@@ -17,9 +17,9 @@ class PUZZLEGAMENATURE_API ACameraRail : public ACameraRig_Rail
 public:
 	virtual void BeginPlay() override;
 	UFUNCTION(BlueprintCallable, category = "Rail Controls")
-	void MoveCamera();
+	void MoveCamera(bool bForward);
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Rail Controls")
 	float RailSpeed = 0.0;
 	UPROPERTY(VisibleAnywhere, category = "Rail Length")
-	float SplineLength;
+	float RailLength;
 };
