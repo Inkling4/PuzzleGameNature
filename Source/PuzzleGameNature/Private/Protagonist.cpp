@@ -5,7 +5,6 @@
 #include "InputMappingContext.h"
 #include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
-#include "Camera/CameraComponent.h"
 #include "EnhancedInputComponent.h"
 
 // Sets default values
@@ -13,8 +12,8 @@ AProtagonist::AProtagonist()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
-	Camera->SetupAttachment(RootComponent);
+
+
 
 }
 
@@ -68,5 +67,5 @@ void AProtagonist::MoveInput(const FInputActionValue& InputValue)
 
 void AProtagonist::JumpInput()
 {
-	AProtagonist::Jump();
+	AProtagonist::Jump(); //Jumps. Thanks UE for making a jump button for us!
 }
