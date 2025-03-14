@@ -23,7 +23,7 @@ public:
 	UFUNCTION(BlueprintCallable, category = "Rail Controls")
 	void MoveCamera(bool bForward);
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Rail Controls")
-	float RailSpeed = 0.0;
+	float RailSpeed;
 	UPROPERTY(VisibleAnywhere, category = "Rail Length")
 	float RailLength;
 };

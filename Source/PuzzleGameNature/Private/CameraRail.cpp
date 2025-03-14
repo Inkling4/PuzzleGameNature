@@ -3,7 +3,7 @@
 
 #include "CameraRail.h"
 
-#include <tiff.h>
+#include <tiff.h> //idk why this include showed up, it just did
 
 #include "Components/SplineComponent.h"
 
@@ -15,11 +15,13 @@ void ACameraRail::BeginPlay()
 	RailLength = RailSplineComponent->GetSplineLength();
 }
 
-//Constructor
+//Constructor, sets default values and makes a camera
 ACameraRail::ACameraRail(const FObjectInitializer& ObjectInitialier) : ACameraRig_Rail(ObjectInitialier)
 {
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
 	Camera->SetupAttachment(RailCameraMount);
+	RailSpeed = 0.0;
+	RailLength = RailLength = RailSplineComponent->GetSplineLength();
 }
 
 
