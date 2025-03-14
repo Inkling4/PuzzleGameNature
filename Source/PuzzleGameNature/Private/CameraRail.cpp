@@ -3,15 +3,27 @@
 
 #include "CameraRail.h"
 
+#include <tiff.h>
+
 #include "Components/SplineComponent.h"
 
 //Activates when project/level starts
 void ACameraRail::BeginPlay()
 {
-
+	Super::BeginPlay();
 	//Sets variable SplineLength to the length of the rail
 	RailLength = RailSplineComponent->GetSplineLength();
 }
+
+//Constructor
+ACameraRail::ACameraRail(const FObjectInitializer& ObjectInitialier) : ACameraRig_Rail(ObjectInitialier)
+{
+	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
+	Camera->SetupAttachment(RailCameraMount);
+}
+
+
+
 
 //Moves the camera one "step" along the rail
 void ACameraRail::MoveCamera(bool bForward)
