@@ -21,6 +21,8 @@ class PUZZLEGAMENATURE_API AProtagonist : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AProtagonist();
+private:
+	void ChangeDirection();
 
 protected:
 	// Called when the game starts or when spawned
@@ -34,12 +36,14 @@ protected:
 	class UInputAction* IA_Jump;
 	UPROPERTY(EditAnywhere, category = "EnhancedInput")
 	class UInputAction* IA_CrowbarAssault;
+	UPROPERTY(EditAnywhere, category = "EnhancedInput")
+	class UInputAction* IA_Interact;
 
 	void MoveInput(const FInputActionValue& InputValue);
 	void JumpInput();
-	void ChangeDirection();
 	UFUNCTION(BlueprintImplementableEvent)
 	void CrowbarAssaultInput();
+	void InteractInput();
 
 public:	
 	// Called every frame

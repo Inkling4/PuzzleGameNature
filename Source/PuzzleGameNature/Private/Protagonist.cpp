@@ -47,6 +47,7 @@ void AProtagonist::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	{
 		Input->BindAction(IA_Move, ETriggerEvent::Triggered, this, &AProtagonist::MoveInput);
 		Input->BindAction(IA_Jump, ETriggerEvent::Triggered, this, &AProtagonist::JumpInput);
+		Input->BindAction(IA_Interact, ETriggerEvent::Triggered, this, &AProtagonist::InteractInput);
 		Input->BindAction(IA_CrowbarAssault, ETriggerEvent::Triggered, this, &AProtagonist::CrowbarAssaultInput);
 	}
 
@@ -77,6 +78,12 @@ void AProtagonist::CrowbarAssaultInput()
 }
 
 */
+
+void AProtagonist::InteractInput()
+{
+	
+}
+
 
 //Function that sets rotation to velocity direction
 void AProtagonist::ChangeDirection()
