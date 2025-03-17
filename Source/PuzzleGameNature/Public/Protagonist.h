@@ -32,9 +32,13 @@ protected:
 	class UInputAction* IA_Move;
 	UPROPERTY(EditAnywhere, category = "EnhancedInput")
 	class UInputAction* IA_Jump;
+	UPROPERTY(EditAnywhere, category = "EnhancedInput")
+	class UInputAction* IA_CrowbarAssault;
 
 	void MoveInput(const FInputActionValue& InputValue);
 	void JumpInput();
+	UFUNCTION(BlueprintImplementableEvent)
+	void CrowbarAssaultInput();
 
 public:	
 	// Called every frame

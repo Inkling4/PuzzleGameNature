@@ -48,7 +48,7 @@ void AProtagonist::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	{
 		Input->BindAction(IA_Move, ETriggerEvent::Triggered, this, &AProtagonist::MoveInput);
 		Input->BindAction(IA_Jump, ETriggerEvent::Triggered, this, &AProtagonist::JumpInput);
-
+		Input->BindAction(IA_CrowbarAssault, ETriggerEvent::Triggered, this, &AProtagonist::CrowbarAssaultInput);
 	}
 
 
@@ -69,3 +69,10 @@ void AProtagonist::JumpInput()
 {
 	AProtagonist::Jump(); //Jumps. Thanks UE for making a jump button for us!
 }
+/*
+void AProtagonist::CrowbarAssaultInput()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Crowbar activated!"));
+}
+
+*/

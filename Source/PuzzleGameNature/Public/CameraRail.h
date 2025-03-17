@@ -8,7 +8,7 @@
 #include "CameraRail.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PUZZLEGAMENATURE_API ACameraRail : public ACameraRig_Rail

@@ -31,7 +31,7 @@ ACameraRail::ACameraRail(const FObjectInitializer& ObjectInitialier) : ACameraRi
 void ACameraRail::MoveCamera(bool bForward)
 {
 	//Displays debug message showing the function successfully called
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Emerald, TEXT("Function \"Move Camera\" called!)"));
+	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Emerald, TEXT("Function \"Move Camera\" called!)"));
 
 	//This variable is the size of the step the camera will move based off of the speed and length.
 	float MovementFraction = RailSpeed / RailLength;
