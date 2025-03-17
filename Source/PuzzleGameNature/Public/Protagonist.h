@@ -7,7 +7,6 @@
 #include "InputMappingContext.h"
 #include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
-#include "Camera/CameraComponent.h"
 #include "EnhancedInputComponent.h"
 #include "Protagonist.generated.h"
 
@@ -16,8 +15,8 @@ class PUZZLEGAMENATURE_API AProtagonist : public ACharacter
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* Camera;
+	//UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
+	//class UCameraComponent* Camera;
 
 public:
 	// Sets default values for this character's properties
