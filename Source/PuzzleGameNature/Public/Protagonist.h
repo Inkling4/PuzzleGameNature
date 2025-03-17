@@ -37,6 +37,7 @@ protected:
 
 	void MoveInput(const FInputActionValue& InputValue);
 	void JumpInput();
+	void ChangeDirection();
 	UFUNCTION(BlueprintImplementableEvent)
 	void CrowbarAssaultInput();
 

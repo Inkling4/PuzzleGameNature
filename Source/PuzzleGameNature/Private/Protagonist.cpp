@@ -14,7 +14,6 @@ AProtagonist::AProtagonist()
 	PrimaryActorTick.bCanEverTick = true;
 
 
-
 }
 
 // Called when the game starts or when spawned
@@ -62,6 +61,8 @@ void AProtagonist::MoveInput(const FInputActionValue& InputValue)
 	{
 		AddMovementInput(FVector{ 1,0,0, }, InputVector.X);
 		AddMovementInput(FVector{ 0,1,0 }, InputVector.Y);
+		ChangeDirection();
+
 	}
 }
 
@@ -76,3 +77,67 @@ void AProtagonist::CrowbarAssaultInput()
 }
 
 */
+
+//Function that sets rotation to velocity direction
+void AProtagonist::ChangeDirection()
+{
+	bool bGreaterThanX = false;
+	bool bLesserThanX = false;
+	bool bGreaterThanY = false;
+	bool bLesserThanY = false;
+	FVector Velocity = GetVelocity();
+
+	//TODO: Make diagonals have a speed threshold to make straight movement more often
+
+	//Sets booleans for if the speed is higher or lower than 0
+	if (Velocity.X > 0) { bGreaterThanX = true; }
+	if (Velocity.X < 0) { bLesserThanX = true; }
+	if (Velocity.Y > 0) { bGreaterThanY = true; }
+	if (Velocity.Y < 0) { bLesserThanY = true; }
+
+	//8 if statements for different rotations
+
+	if (bGreaterThanX)
+	{
+		if (bGreaterThanY)
+		{
+			SetActorRotation({ 0,45,0 });
+		}
+		else if (bLesserThanY)
+		{
+			SetActorRotation({ 0,-45,0 });
+		}
+		else
+		{
+			SetActorRotation({ 0,0,0, });
+		}
+	}
+
+	if (bGreaterThanY and !bGreaterThanX)
+	{
+		if (bLesserThanX)
+		{
+			SetActorRotation({ 0, 135, 0 });
+		}
+		else
+		{
+			SetActorRotation({ 0, 90, 0 });
+		}
+	}
+
+	if (bLesserThanX and !bGreaterThanY)
+	{
+		if (bLesserThanY)
+		{
+			SetActorRotation({ 0,-135,0 });
+		}
+		else
+		{
+			SetActorRotation({ 0, 180, 0 });
+		}
+	}
+	if (bLesserThanY and !bGreaterThanX and !bLesserThanX)
+	{
+		SetActorRotation({ 0,-90,0 });
+	}
+}
