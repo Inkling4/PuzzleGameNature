@@ -21,7 +21,7 @@ public:
 	ACameraRail(const FObjectInitializer& ObjectInitialier);
 	virtual void BeginPlay() override;
 	UFUNCTION(BlueprintCallable, category = "Rail Controls")
-	void MoveCamera(bool bForward);
+	void MoveCamera(bool bForward, float Speed);
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Rail Controls")
 	float RailSpeed;
 	UPROPERTY(VisibleAnywhere, category = "Rail Length")
