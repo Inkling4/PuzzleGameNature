@@ -27,7 +27,7 @@ void AProtagonist::BeginPlay()
 void AProtagonist::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	AProtagonist::ChangeDirection();
 	
 }
 
@@ -62,7 +62,6 @@ void AProtagonist::MoveInput(const FInputActionValue& InputValue)
 	{
 		AddMovementInput(FVector{ 1,0,0, }, InputVector.X);
 		AddMovementInput(FVector{ 0,1,0 }, InputVector.Y);
-		ChangeDirection();
 
 	}
 }

@@ -18,8 +18,10 @@ void ACameraRail::BeginPlay()
 //Constructor, sets default values and makes a camera
 ACameraRail::ACameraRail(const FObjectInitializer& ObjectInitialier) : ACameraRig_Rail(ObjectInitialier)
 {
-	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
-	Camera->SetupAttachment(RailCameraMount);
+	PrimaryActorTick.bCanEverTick = true;
+	//Put in comment because We got issues making the camera a component rather than separate actor
+	//Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
+	//Camera->SetupAttachment(RailCameraMount);
 	RailSpeed = 0.0;
 	RailLength = RailLength = RailSplineComponent->GetSplineLength();
 }
