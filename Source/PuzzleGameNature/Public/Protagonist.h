@@ -21,7 +21,6 @@ class PUZZLEGAMENATURE_API AProtagonist : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AProtagonist();
-private:
 	void ChangeDirection();
 
 protected:

@@ -5,6 +5,7 @@
 
 #include <tiff.h> //idk why this include showed up, it just did
 
+#include "Camera/CameraActor.h"
 #include "Components/SplineComponent.h"
 
 //Activates when project/level starts

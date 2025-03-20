@@ -26,5 +26,4 @@ public:
 	float RailSpeed;
 	UPROPERTY(VisibleAnywhere, category = "Rail Length")
 	float RailLength;
-
 };
