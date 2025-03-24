@@ -27,6 +27,7 @@ class PUZZLEGAMENATURE_API AProtagonist : public ACharacter
 
 	UPROPERTY(meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<ABreakableObject> BreakableObjectptr;
+
 public:
 	// Sets default values for this character's properties
 	AProtagonist();

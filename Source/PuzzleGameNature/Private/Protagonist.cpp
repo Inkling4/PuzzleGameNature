@@ -13,7 +13,10 @@ AProtagonist::AProtagonist()
 	//Creates the hitbox for crowbar attacks
 	CrowbarHitbox = CreateDefaultSubobject<USphereComponent>("CrowbarHitbox");
 	CrowbarHitbox->SetupAttachment(RootComponent);
+
+
 	BreakableObjectptr = Cast<ABreakableObject>(AActor::GetClass());
+
 }
 
 // Called when the game starts or when spawned
