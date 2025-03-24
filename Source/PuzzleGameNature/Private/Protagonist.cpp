@@ -20,9 +20,11 @@ AProtagonist::AProtagonist()
 void AProtagonist::BeginPlay()
 {
 	Super::BeginPlay();
-	//Array of all actors in world
+
+	//Array of all actors in world with specified class (local variable)
 	TArray<AActor*> OutputActors;
 
+	//Gets all actors of class "ABreakableObject"
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABreakableObject::StaticClass(), OutputActors);
 	//foreach loop that cycles through output array
 	for (AActor* OutputActor : OutputActors)
