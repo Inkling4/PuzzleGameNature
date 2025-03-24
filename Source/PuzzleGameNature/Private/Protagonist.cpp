@@ -2,10 +2,7 @@
 
 
 #include "Protagonist.h"
-#include "InputMappingContext.h"
 #include "InputActionValue.h"
-#include "EnhancedInputSubsystems.h"
-#include "EnhancedInputComponent.h"
 
 // Sets default values
 AProtagonist::AProtagonist()
@@ -13,6 +10,9 @@ AProtagonist::AProtagonist()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//Creates the hitbox for crowbar attacks
+	CrowbarHitbox = CreateDefaultSubobject<USphereComponent>("CrowbarHitbox");
+	CrowbarHitbox->SetupAttachment(RootComponent);
 
 }
 
@@ -20,7 +20,15 @@ AProtagonist::AProtagonist()
 void AProtagonist::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	//Array of all actors in world
+	TArray<AActor*> OutputActors;
+
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABreakableObject::StaticClass(), OutputActors);
+	//foreach loop that cycles through output array
+	for (AActor* OutputActor : OutputActors)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("Found a breakable object in world!"));
+	}
 }
 
 // Called every frame
@@ -81,6 +89,36 @@ void AProtagonist::CrowbarAssaultInput()
 void AProtagonist::InteractInput()
 {
 	
+}
+
+//Runs whenever you press the crowbar button
+void AProtagonist::CrowbarAssaultInput()
+{
+	if (Actorptr == nullptr)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("Actor pointer is a null pointer :c"));
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Actor pointer is NOT a null pointer! :D"));
+	}
+
+	if (BreakableObjectptr == nullptr)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("Breakable Object is a null pointer :c"));
+	}
+	else
+	{
+
+
+		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Breakable Object is NOT a null pointer! :D"));
+		if (CrowbarHitbox->IsOverlappingActor(Actorptr))
+		{
+		
+		}
+
+	}
+
 }
 
 

@@ -4,9 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/SphereComponent.h"
 #include "InputMappingContext.h"
-#include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
+#include "Kismet/GameplayStatics.h"
+#include "BreakableObject.h"
+#include "InputActionValue.h"
 #include "EnhancedInputComponent.h"
 #include "Protagonist.generated.h"
 
@@ -18,11 +21,18 @@ class PUZZLEGAMENATURE_API AProtagonist : public ACharacter
 	//UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
 	//class UCameraComponent* Camera;
 
+	//Declares the crowbar hitbox pointer
+	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
+	class USphereComponent* CrowbarHitbox;
+	class ABreakableObject* BreakableObjectptr1;
+	UPROPERTY(meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<AActor> Actorptr;
+	UPROPERTY(meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<ABreakableObject> BreakableObjectptr;
 public:
 	// Sets default values for this character's properties
 	AProtagonist();
 	void ChangeDirection();
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -40,7 +50,6 @@ protected:
 
 	void MoveInput(const FInputActionValue& InputValue);
 	void JumpInput();
-	UFUNCTION(BlueprintImplementableEvent)
 	void CrowbarAssaultInput();
 	void InteractInput();
 
