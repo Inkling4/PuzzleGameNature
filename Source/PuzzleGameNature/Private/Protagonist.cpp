@@ -15,8 +15,6 @@ AProtagonist::AProtagonist()
 	CrowbarHitbox->SetupAttachment(RootComponent);
 
 
-	BreakableObjectptr = Cast<ABreakableObject>(AActor::GetClass());
-
 }
 
 // Called when the game starts or when spawned
