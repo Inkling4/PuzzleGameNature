@@ -13,7 +13,7 @@ AProtagonist::AProtagonist()
 	//Creates the hitbox for crowbar attacks
 	CrowbarHitbox = CreateDefaultSubobject<USphereComponent>("CrowbarHitbox");
 	CrowbarHitbox->SetupAttachment(RootComponent);
-
+	BreakableObjectptr = Cast<ABreakableObject>(AActor::GetClass());
 }
 
 // Called when the game starts or when spawned
@@ -21,14 +21,13 @@ void AProtagonist::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//Array of all actors in world with specified class (local variable)
-	TArray<AActor*> OutputActors;
 
 	//Gets all actors of class "ABreakableObject"
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABreakableObject::StaticClass(), OutputActors);
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABreakableObject::StaticClass(), BreakableObjectActors);
 	//foreach loop that cycles through output array
-	for (AActor* OutputActor : OutputActors)
+	for (AActor* OutputActor : BreakableObjectActors)
 	{
+
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("Found a breakable object in world!"));
 	}
 }
@@ -96,14 +95,6 @@ void AProtagonist::InteractInput()
 //Runs whenever you press the crowbar button
 void AProtagonist::CrowbarAssaultInput()
 {
-	if (Actorptr == nullptr)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("Actor pointer is a null pointer :c"));
-	}
-	else
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Actor pointer is NOT a null pointer! :D"));
-	}
 
 	if (BreakableObjectptr == nullptr)
 	{
@@ -114,7 +105,7 @@ void AProtagonist::CrowbarAssaultInput()
 
 
 		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Breakable Object is NOT a null pointer! :D"));
-		if (CrowbarHitbox->IsOverlappingActor(Actorptr))
+		if (CrowbarHitbox->IsOverlappingActor(BreakableObjectActors[0]))
 		{
 		
 		}

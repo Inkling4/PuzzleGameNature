@@ -24,15 +24,16 @@ class PUZZLEGAMENATURE_API AProtagonist : public ACharacter
 	//Declares the crowbar hitbox pointer
 	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
 	class USphereComponent* CrowbarHitbox;
-	class ABreakableObject* BreakableObjectptr1;
-	UPROPERTY(meta = (AllowPrivateAccess = "true"))
-	TObjectPtr<AActor> Actorptr;
+
 	UPROPERTY(meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<ABreakableObject> BreakableObjectptr;
 public:
 	// Sets default values for this character's properties
 	AProtagonist();
 	void ChangeDirection();
+	//Array of all actors in world with class "breakable object"
+	TArray<AActor*> BreakableObjectActors;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
