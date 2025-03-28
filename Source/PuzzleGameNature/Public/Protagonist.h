@@ -33,7 +33,8 @@ public:
 	AProtagonist();
 	void ChangeDirection();
 	//Array of all actors in world with class "breakable object"
-	TArray<AActor*> BreakableObjectActors;
+	UPROPERTY(EditAnywhere, category = "BreakableObjects")
+	TArray<ABreakableObject*> BreakableObjectActors;
 
 protected:
 	// Called when the game starts or when spawned

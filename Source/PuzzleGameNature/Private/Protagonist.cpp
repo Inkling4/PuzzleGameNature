@@ -22,14 +22,16 @@ void AProtagonist::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//temp array
+	TArray<AActor*> TempBreakActors;
 
 	//Gets all actors of class "ABreakableObject"
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABreakableObject::StaticClass(), BreakableObjectActors);
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABreakableObject::StaticClass(), TempBreakActors);
 	//foreach loop that cycles through output array
-	for (AActor* OutputActor : BreakableObjectActors)
+	for (auto Actor : TempBreakActors)
 	{
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("Found a breakable object in world!"));
+		ABreakableObject* BreakableActor = Cast<ABreakableObject>(Actor);
+		BreakableObjectActors.Add(BreakableActor);
 	}
 }
 
@@ -80,13 +82,7 @@ void AProtagonist::JumpInput()
 {
 	AProtagonist::Jump(); //Jumps. Thanks UE for making a jump button for us!
 }
-/*
-void AProtagonist::CrowbarAssaultInput()
-{
-	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Crowbar activated!"));
-}
 
-*/
 
 void AProtagonist::InteractInput()
 {
@@ -97,21 +93,7 @@ void AProtagonist::InteractInput()
 void AProtagonist::CrowbarAssaultInput()
 {
 
-	if (BreakableObjectptr == nullptr)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("Breakable Object is a null pointer :c"));
-	}
-	else
-	{
-
-
-		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Breakable Object is NOT a null pointer! :D"));
-		if (CrowbarHitbox->IsOverlappingActor(BreakableObjectActors[0]))
-		{
-		
-		}
-
-	}
+	
 
 }
 
