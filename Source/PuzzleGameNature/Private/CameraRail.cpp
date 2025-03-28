@@ -23,7 +23,7 @@ ACameraRail::ACameraRail(const FObjectInitializer& ObjectInitialier) : ACameraRi
 	//Put in comment because We got issues making the camera a component rather than separate actor
 	//Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
 	//Camera->SetupAttachment(RailCameraMount);
-	RailSpeed = 0.0;
+	RailSpeed = 500.0;
 	RailLength = RailLength = RailSplineComponent->GetSplineLength();
 }
 
