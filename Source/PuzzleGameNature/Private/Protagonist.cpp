@@ -10,11 +10,15 @@ AProtagonist::AProtagonist()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	bIsOverlappingCrowbarTarget = false;
+
 	//Creates the hitbox for crowbar attacks
 	CrowbarHitbox = CreateDefaultSubobject<USphereComponent>("CrowbarHitbox");
+	CrowbarHitbox->SetGenerateOverlapEvents(true);
 	CrowbarHitbox->SetupAttachment(RootComponent);
-
-
+	//Code from https://unrealcpp.com/on-overlap-begin/
+	CrowbarHitbox->OnComponentBeginOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapBegin);
+	CrowbarHitbox->OnComponentEndOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapEnd);
 }
 
 // Called when the game starts or when spawned
@@ -93,7 +97,6 @@ void AProtagonist::InteractInput()
 void AProtagonist::CrowbarAssaultInput()
 {
 
-	
 
 }
 
@@ -161,3 +164,15 @@ void AProtagonist::ChangeDirection()
 		SetActorRotation({ 0,-90,0 });
 	}
 }
+
+void AProtagonist::OnCrowbarOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	
+}
+
+
+void AProtagonist::OnCrowbarOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	
+}
+

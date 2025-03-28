@@ -36,6 +36,18 @@ public:
 	UPROPERTY(EditAnywhere, category = "BreakableObjects")
 	TArray<ABreakableObject*> BreakableObjectActors;
 
+	UPROPERTY(VisibleAnywhere, category = "BreakableObjects")
+	bool bIsOverlappingCrowbarTarget;
+	//code below from: https://unrealcpp.com/on-overlap-begin/
+
+	// declare overlap begin function
+	UFUNCTION()
+	void OnCrowbarOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	// declare overlap end function
+	UFUNCTION()
+	void OnCrowbarOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
