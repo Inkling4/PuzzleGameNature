@@ -18,9 +18,17 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	UPROPERTY(VisibleAnywhere, category = "BreakableObjects")
+	bool bIsOverlappingCrowbar;
+
+	UPROPERTY()
+	AActor* PlayerActorRef;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(CallInEditor)
+	void BreakObject();
 	
 };

@@ -3,14 +3,15 @@
 
 #include "Protagonist.h"
 #include "InputActionValue.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AProtagonist::AProtagonist()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	
 
-	bIsOverlappingCrowbarTarget = false;
 
 	//Creates the hitbox for crowbar attacks
 	CrowbarHitbox = CreateDefaultSubobject<USphereComponent>("CrowbarHitbox");
@@ -19,6 +20,8 @@ AProtagonist::AProtagonist()
 	//Code from https://unrealcpp.com/on-overlap-begin/
 	CrowbarHitbox->OnComponentBeginOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapBegin);
 	CrowbarHitbox->OnComponentEndOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapEnd);
+	
+
 }
 
 // Called when the game starts or when spawned
@@ -26,10 +29,14 @@ void AProtagonist::BeginPlay()
 {
 	Super::BeginPlay();
 
+
+
+	// Not currently in use for anything, which is why it's in comments.
+	
 	//temp array
 	TArray<AActor*> TempBreakActors;
 
-	//Gets all actors of class "ABreakableObject"
+	//Gets all actors of class "ABreakableObject".
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABreakableObject::StaticClass(), TempBreakActors);
 	//foreach loop that cycles through output array
 	for (auto Actor : TempBreakActors)
@@ -37,6 +44,9 @@ void AProtagonist::BeginPlay()
 		ABreakableObject* BreakableActor = Cast<ABreakableObject>(Actor);
 		BreakableObjectActors.Add(BreakableActor);
 	}
+	
+
+
 }
 
 // Called every frame
@@ -96,9 +106,21 @@ void AProtagonist::InteractInput()
 //Runs whenever you press the crowbar button
 void AProtagonist::CrowbarAssaultInput()
 {
+	
+	for (auto BreakableActor : BreakableObjectActors)
+	{
+		if (AProtagonist::IsOverlappingActor(BreakableActor))
+		{
+			TObjectPtr<ABreakableObject> BreakableActorRef = Cast<ABreakableObject>(BreakableActor);
+			BreakableActorRef->BreakObject();
+		}
 
-
+	}
 }
+
+
+
+
 
 
 //Function that sets rotation to velocity direction
@@ -165,14 +187,42 @@ void AProtagonist::ChangeDirection()
 	}
 }
 
+
 void AProtagonist::OnCrowbarOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	
+	//null pointer check, for safety
+	if (GEngine == nullptr || OtherActor == nullptr) { return; }
+
+	//Test to see if function is called
+	//GEngine->AddOnScreenDebugMessage(-1, 4.0f, FColor::Green, TEXT("Crowbar overlap called!"));
+
+
+	/*
+	//Checks if other actor is a child of breakable object
+	if (OtherActor->GetClass()->IsChildOf(ABreakableObject::StaticClass()))
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 4.0f, FColor::Blue, TEXT("Crowbar on Breakable object overlap called!"));
+
+		TObjectPtr<ABreakableObject> BreakableObjectRef = Cast<ABreakableObject>(OtherActor);
+		if (BreakableObjectRef != nullptr)
+		{
+			BreakableObjectRef->BreakObject();
+		}
+	}
+	*/
 }
 
 
 void AProtagonist::OnCrowbarOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	
+	//null pointer check, for safety
+	if (GEngine == nullptr || OtherActor == nullptr) { return; }
+
+	//Checks if other actor is a child of breakable object
+	if (OtherActor->GetClass()->IsChildOf(ABreakableObject::StaticClass()))
+	{
+		//GEngine->AddOnScreenDebugMessage(-1, 4.0f, FColor::Magenta, TEXT("Crowbar on Breakable object overlap end called!"));
+	}
+
 }
 

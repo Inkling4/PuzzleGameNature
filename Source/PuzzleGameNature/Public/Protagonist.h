@@ -25,8 +25,9 @@ class PUZZLEGAMENATURE_API AProtagonist : public ACharacter
 	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
 	class USphereComponent* CrowbarHitbox;
 
-	UPROPERTY(meta = (AllowPrivateAccess = "true"))
-	TObjectPtr<ABreakableObject> BreakableObjectptr;
+	
+
+	
 
 public:
 	// Sets default values for this character's properties
@@ -36,8 +37,12 @@ public:
 	UPROPERTY(EditAnywhere, category = "BreakableObjects")
 	TArray<ABreakableObject*> BreakableObjectActors;
 
-	UPROPERTY(VisibleAnywhere, category = "BreakableObjects")
-	bool bIsOverlappingCrowbarTarget;
+	
+
+	UPROPERTY()
+	AProtagonist* ProtagonistRef;
+
+	
 	//code below from: https://unrealcpp.com/on-overlap-begin/
 
 	// declare overlap begin function
@@ -51,6 +56,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
 
 	UPROPERTY(EditAnywhere, category = "EnhancedInput")
 	class UInputMappingContext* TheInputMappingContextFile;
