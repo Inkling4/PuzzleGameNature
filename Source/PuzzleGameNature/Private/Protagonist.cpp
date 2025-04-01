@@ -10,11 +10,15 @@ AProtagonist::AProtagonist()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	bIsOverlappingCrowbarTarget = false;
+
 	//Creates the hitbox for crowbar attacks
 	CrowbarHitbox = CreateDefaultSubobject<USphereComponent>("CrowbarHitbox");
+	CrowbarHitbox->SetGenerateOverlapEvents(true);
 	CrowbarHitbox->SetupAttachment(RootComponent);
-
-
+	//Code from https://unrealcpp.com/on-overlap-begin/
+	CrowbarHitbox->OnComponentBeginOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapBegin);
+	CrowbarHitbox->OnComponentEndOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapEnd);
 }
 
 // Called when the game starts or when spawned
@@ -22,14 +26,16 @@ void AProtagonist::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//temp array
+	TArray<AActor*> TempBreakActors;
 
 	//Gets all actors of class "ABreakableObject"
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABreakableObject::StaticClass(), BreakableObjectActors);
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABreakableObject::StaticClass(), TempBreakActors);
 	//foreach loop that cycles through output array
-	for (AActor* OutputActor : BreakableObjectActors)
+	for (auto Actor : TempBreakActors)
 	{
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("Found a breakable object in world!"));
+		ABreakableObject* BreakableActor = Cast<ABreakableObject>(Actor);
+		BreakableObjectActors.Add(BreakableActor);
 	}
 }
 
@@ -80,13 +86,7 @@ void AProtagonist::JumpInput()
 {
 	AProtagonist::Jump(); //Jumps. Thanks UE for making a jump button for us!
 }
-/*
-void AProtagonist::CrowbarAssaultInput()
-{
-	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Crowbar activated!"));
-}
 
-*/
 
 void AProtagonist::InteractInput()
 {
@@ -97,21 +97,6 @@ void AProtagonist::InteractInput()
 void AProtagonist::CrowbarAssaultInput()
 {
 
-	if (BreakableObjectptr == nullptr)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("Breakable Object is a null pointer :c"));
-	}
-	else
-	{
-
-
-		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Breakable Object is NOT a null pointer! :D"));
-		if (CrowbarHitbox->IsOverlappingActor(BreakableObjectActors[0]))
-		{
-		
-		}
-
-	}
 
 }
 
@@ -179,3 +164,15 @@ void AProtagonist::ChangeDirection()
 		SetActorRotation({ 0,-90,0 });
 	}
 }
+
+void AProtagonist::OnCrowbarOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	
+}
+
+
+void AProtagonist::OnCrowbarOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	
+}
+
