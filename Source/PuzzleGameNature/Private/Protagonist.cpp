@@ -104,17 +104,21 @@ void AProtagonist::InteractInput()
 }
 
 //Runs whenever you press the crowbar button
+//Destroys any breakable object in front of the player if the player has a crowbar
 void AProtagonist::CrowbarAssaultInput()
 {
-	
-	for (auto BreakableActor : BreakableObjectActors)
+	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, TEXT("Crowbar input called!"));
+	if (bHasCrowbar)
 	{
-		if (AProtagonist::IsOverlappingActor(BreakableActor))
+		for (auto BreakableActor : BreakableObjectActors)
 		{
-			TObjectPtr<ABreakableObject> BreakableActorRef = Cast<ABreakableObject>(BreakableActor);
-			BreakableActorRef->BreakObject();
-		}
+			if (IsOverlappingActor(BreakableActor))
+			{
+				TObjectPtr<ABreakableObject> BreakableActorRef = Cast<ABreakableObject>(BreakableActor);
+				BreakableActorRef->BreakObject();
+			}
 
+		}
 	}
 }
 

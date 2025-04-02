@@ -26,7 +26,7 @@ void APickupAbleObject::BeginPlay()
 	//Points Protagonist ref to player actor
 	ProtagonistRef = Cast<AProtagonist>(PlayerActorRef);
 
-	//Points pointer to capsule component in the player
+	//Points player capsule ref to capsule component in the player
 	PlayerCapsuleRef = Cast<UCapsuleComponent>(PlayerActorRef->GetComponentByClass(UCapsuleComponent::StaticClass()));
 
 }
@@ -40,14 +40,15 @@ void APickupAbleObject::Tick(float DeltaTime)
 	{
 		if (PickupCollision->IsOverlappingComponent(PlayerCapsuleRef))
 		{
-			APickupAbleObject::CollectItem();
+			CollectItem();
 		}
 
 	}
 
 }
 
+//Function empty here, as it is intended to be overridden.
 void APickupAbleObject::CollectItem()
 {
-	
+
 }

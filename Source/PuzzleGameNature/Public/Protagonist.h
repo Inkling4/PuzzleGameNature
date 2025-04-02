@@ -88,9 +88,12 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
 	//Adds input parameter to total money count
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void CollectMoneyScrap(int32 AmountOfScrap);
 	//When called, sets bHasCrowbar to true
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void CollectCrowbar();
 	//Removes input parameter from money count
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void LoseMoneyScrap(int32 MoneySpent);
 };

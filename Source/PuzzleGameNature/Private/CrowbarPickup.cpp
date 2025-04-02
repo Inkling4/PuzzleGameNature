@@ -11,4 +11,12 @@ void ACrowbarPickup::CollectItem()
 {
 	Super::CollectItem();
 	ProtagonistRef->CollectCrowbar();
+	Destroy();
+}
+
+void ACrowbarPickup::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	
 }

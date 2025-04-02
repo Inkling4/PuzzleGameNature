@@ -14,8 +14,9 @@ class PUZZLEGAMENATURE_API ACrowbarPickup : public APickupAbleObject
 {
 	GENERATED_BODY()
 protected:
-	virtual void CollectItem() override;
+
 public:
-	
-	
+	//Sets crowbar to true, and deletes the actor.
+	virtual void CollectItem() override;
+	virtual void Tick(float DeltaTime) override;
 };
