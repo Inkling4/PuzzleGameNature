@@ -74,11 +74,26 @@ protected:
 	void CrowbarAssaultInput();
 	void InteractInput();
 
+	//Inventory system!
+	UPROPERTY(VisibleAnywhere, category = "Inventory")
+	int32 MoneyScraps;
+	UPROPERTY(VisibleAnywhere, category = "Inventory")
+	bool bHasCrowbar;
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
+	//Adds input parameter to total money count
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
+	void CollectMoneyScrap(int32 AmountOfScrap);
+	//When called, sets bHasCrowbar to true
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
+	void CollectCrowbar();
+	//Removes input parameter from money count
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
+	void LoseMoneyScrap(int32 MoneySpent);
 };
