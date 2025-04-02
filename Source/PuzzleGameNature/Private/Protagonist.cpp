@@ -11,7 +11,7 @@ AProtagonist::AProtagonist()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	
-
+	
 
 	//Creates the hitbox for crowbar attacks
 	CrowbarHitbox = CreateDefaultSubobject<USphereComponent>("CrowbarHitbox");
@@ -29,7 +29,7 @@ void AProtagonist::BeginPlay()
 {
 	Super::BeginPlay();
 
-
+	bHasCrowbar = false;
 
 	// Not currently in use for anything, which is why it's in comments.
 	
@@ -226,3 +226,20 @@ void AProtagonist::OnCrowbarOverlapEnd(class UPrimitiveComponent* OverlappedComp
 
 }
 
+//Inventory!
+
+void AProtagonist::CollectMoneyScrap(int32 AmountOfScrap)
+{
+	MoneyScraps += AmountOfScrap;
+}
+
+void AProtagonist::LoseMoneyScrap(int32 MoneySpent)
+{
+	MoneyScraps -= MoneySpent;
+}
+
+
+void AProtagonist::CollectCrowbar()
+{
+	bHasCrowbar = true;
+}

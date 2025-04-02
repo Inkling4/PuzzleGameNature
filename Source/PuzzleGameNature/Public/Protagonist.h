@@ -81,4 +81,14 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+
+	//Inventory system!
+	UPROPERTY(VisibleAnywhere, category = "Inventory")
+	int32 MoneyScraps;
+	UPROPERTY(VisibleAnywhere, category = "Inventory")
+	bool bHasCrowbar;
+
+	void CollectMoneyScrap(int32 AmountOfScrap);
+	void CollectCrowbar();
+	void LoseMoneyScrap(int32 MoneySpent);
 };

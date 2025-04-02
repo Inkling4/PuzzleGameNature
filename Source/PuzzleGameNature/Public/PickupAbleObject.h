@@ -4,8 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/SphereComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "PickupAbleObject.generated.h"
 
+//Generic pickup class objects can derive from
 UCLASS()
 class PUZZLEGAMENATURE_API APickupAbleObject : public AActor
 {
@@ -15,12 +18,24 @@ public:
 	// Sets default values for this actor's properties
 	APickupAbleObject();
 
+	TObjectPtr<AActor> PlayerActorRef;
+	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
+	class USphereComponent* PickupCollision;
+
+	UPROPERTY()
+	TObjectPtr<UCapsuleComponent> PlayerCapsuleRef;
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	//Runs when this actor touches the player. Can be overridden.
+	virtual void CollectItem();
+
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
 
 };
