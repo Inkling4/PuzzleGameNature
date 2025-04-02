@@ -13,5 +13,9 @@ UCLASS()
 class PUZZLEGAMENATURE_API ACrowbarPickup : public APickupAbleObject
 {
 	GENERATED_BODY()
+protected:
+	virtual void CollectItem() override;
+public:
+	
 	
 };

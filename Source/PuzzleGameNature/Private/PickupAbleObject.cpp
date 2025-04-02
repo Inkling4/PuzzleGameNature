@@ -2,7 +2,6 @@
 
 
 #include "PickupAbleObject.h"
-#include "Protagonist.h"
 
 // Sets default values
 APickupAbleObject::APickupAbleObject()
@@ -23,7 +22,9 @@ void APickupAbleObject::BeginPlay()
 	Super::BeginPlay();
 	//Points player actor ref to player actor
 	PlayerActorRef = GetWorld()->GetFirstPlayerController()->GetPawn();
-	PlayerActorRef->GetComponentByClass(UCapsuleComponent::StaticClass());
+
+	//Points Protagonist ref to player actor
+	ProtagonistRef = Cast<AProtagonist>(PlayerActorRef);
 
 	//Points pointer to capsule component in the player
 	PlayerCapsuleRef = Cast<UCapsuleComponent>(PlayerActorRef->GetComponentByClass(UCapsuleComponent::StaticClass()));

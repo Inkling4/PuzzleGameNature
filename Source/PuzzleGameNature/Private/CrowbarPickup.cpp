@@ -3,3 +3,12 @@
 
 #include "CrowbarPickup.h"
 
+
+
+
+
+void ACrowbarPickup::CollectItem()
+{
+	Super::CollectItem();
+	ProtagonistRef->CollectCrowbar();
+}

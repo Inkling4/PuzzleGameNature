@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Components/SphereComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Protagonist.h"
 #include "PickupAbleObject.generated.h"
 
 //Generic pickup class objects can derive from
@@ -19,6 +20,7 @@ public:
 	APickupAbleObject();
 
 	TObjectPtr<AActor> PlayerActorRef;
+	TObjectPtr<AProtagonist> ProtagonistRef;
 	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
 	class USphereComponent* PickupCollision;
 
