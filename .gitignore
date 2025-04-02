@@ -72,5 +72,10 @@ Plugins/**/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+<<<<<<< Updated upstream
 .idea/.idea.PuzzleGameNature/.idea/workspace.xml
 .idea/.idea.PuzzleGameNature/.idea/projectSettingsUpdater.xml
+=======
+.idea/.idea.PuzzleGameNature/.idea/projectSettingsUpdater.xml
+.idea/.idea.PuzzleGameNature/.idea/workspace.xml
+>>>>>>> Stashed changes
