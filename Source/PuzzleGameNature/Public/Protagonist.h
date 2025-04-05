@@ -8,10 +8,14 @@
 #include "InputMappingContext.h"
 #include "EnhancedInputSubsystems.h"
 #include "Kismet/GameplayStatics.h"
-#include "BreakableObject.h"
 #include "InputActionValue.h"
 #include "EnhancedInputComponent.h"
 #include "Protagonist.generated.h"
+
+//Forward declarations
+class AInteractableObject;
+class ABreakableObject;
+
 
 UCLASS()
 class PUZZLEGAMENATURE_API AProtagonist : public ACharacter
@@ -34,13 +38,14 @@ public:
 	AProtagonist();
 	void ChangeDirection();
 	//Array of all actors in world with class "breakable object"
-	UPROPERTY(EditAnywhere, category = "BreakableObjects")
+	UPROPERTY(VisibleAnywhere, category = "BreakableObjects")
 	TArray<ABreakableObject*> BreakableObjectActors;
-
+	//Array of all actors in the world with class "Interactable Object"
+	UPROPERTY(VisibleAnywhere, category = "InteractableObjects")
+	TArray<AInteractableObject*> InteractableObjectActors;
 	
 
-	UPROPERTY()
-	AProtagonist* ProtagonistRef;
+
 
 	
 	//code below from: https://unrealcpp.com/on-overlap-begin/
@@ -68,17 +73,34 @@ protected:
 	class UInputAction* IA_CrowbarAssault;
 	UPROPERTY(EditAnywhere, category = "EnhancedInput")
 	class UInputAction* IA_Interact;
+	UPROPERTY(EditAnywhere, category = "EnhancedInput")
+	class UInputAction* IA_Heal;
 
 	void MoveInput(const FInputActionValue& InputValue);
 	void JumpInput();
 	void CrowbarAssaultInput();
 	void InteractInput();
+	void HealInput();
+
+	//Stats
+
+	UPROPERTY(VisibleAnywhere, category = "Stats")
+	int32 Health;
+
+	UPROPERTY(EditAnywhere, category = "Stats")
+	int32 MaxHealth;
+
+	UPROPERTY(EditAnywhere, category = "Stats")
+	int32 MedkitPower;
 
 	//Inventory system!
 	UPROPERTY(VisibleAnywhere, category = "Inventory")
 	int32 MoneyScraps;
 	UPROPERTY(VisibleAnywhere, category = "Inventory")
 	bool bHasCrowbar;
+	UPROPERTY(VisibleAnywhere, category = "Inventory")
+	int32 Medkits;
+
 	
 public:	
 	// Called every frame
@@ -96,4 +118,21 @@ public:
 	//Removes input parameter from money count
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void LoseMoneyScrap(int32 MoneySpent);
+	//Grants the player one medkit.
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
+	void GainMedkit();
+	//Returns amount of scraps the player has.
+	UFUNCTION (BlueprintCallable, category = "Inventory")
+	int32 GetMoneyscraps() const;
+
+	//Heals you MedkitPower health and spends a medkit if you have one. Returns true if healed successfully.
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
+	bool Heal();
+	
+	//Returns current health of player, as an integer
+	int32 GetHealth() const;
+
+	//Returns a reference to the crowbar hitbox
+	USphereComponent* GetCrowbarHitbox() const;
+	
 };

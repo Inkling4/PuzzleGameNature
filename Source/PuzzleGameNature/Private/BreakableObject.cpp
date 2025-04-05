@@ -17,14 +17,9 @@ ABreakableObject::ABreakableObject()
 void ABreakableObject::BeginPlay()
 {
 	Super::BeginPlay();
-	//temp array
-	TArray<AActor*> TempPlayers;
+	
 	//Makes PlayerActorRef point to the player
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AProtagonist::StaticClass(), TempPlayers);
-	for (auto temp_player : TempPlayers)
-	{
-		PlayerActorRef = temp_player;
-	}
+	PlayerActorRef = Cast<AActor>(GetWorld()->GetFirstPlayerController()->GetPawn());
 
 	
 }
