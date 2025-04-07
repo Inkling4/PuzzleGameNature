@@ -130,7 +130,7 @@ public:
 	int32 GetMoneyscraps() const;
 
 	//Heals you MedkitPower health and spends a medkit if you have one. Returns true if healed successfully.
-	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
+	UFUNCTION(BlueprintCallable, category = "Inventory")
 	bool Heal();
 	
 	//Returns current health of player, as an integer
