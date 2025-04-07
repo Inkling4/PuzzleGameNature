@@ -12,7 +12,7 @@ UBTTask_FindRandomLocation::UBTTask_FindRandomLocation(FObjectInitializer const&
 
 EBTNodeResult::Type UBTTask_FindRandomLocation::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	//get AI Controller and it's AI npc
+	//gets AI Controller and it's AI npc
 	if (auto* const cont = Cast<ABear_AIController>(OwnerComp.GetAIOwner()))
 	{
 		if (auto* const BearAI = cont->GetPawn())
