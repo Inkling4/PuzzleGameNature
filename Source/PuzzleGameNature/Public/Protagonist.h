@@ -135,4 +135,10 @@ public:
 	//Returns a reference to the crowbar hitbox
 	USphereComponent* GetCrowbarHitbox() const;
 	
+
+	private:
+		// Stimulus Source for the bear AI to react to
+		class UAIPerceptionStimuliSourceComponent* StimulusSource;
+
+		void SetupStimulusSource();
 };

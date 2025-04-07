@@ -6,6 +6,8 @@
 #include "BreakableObject.h"
 #include "InteractableObject.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AISense_Sight.h"
 
 // Sets default values
 AProtagonist::AProtagonist()
@@ -27,6 +29,11 @@ AProtagonist::AProtagonist()
 	CrowbarHitbox->OnComponentBeginOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapBegin);
 	CrowbarHitbox->OnComponentEndOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapEnd);
 	
+
+
+
+	//Stimulus Source
+	SetupStimulusSource();
 
 }
 
@@ -314,4 +321,16 @@ void AProtagonist::GainMedkit()
 USphereComponent* AProtagonist::GetCrowbarHitbox() const
 {
 	return CrowbarHitbox;
+}
+
+
+//Stimulus Source for bear AI to react to
+void AProtagonist::SetupStimulusSource()
+{
+	StimulusSource = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
+	if (StimulusSource)
+	{
+		StimulusSource->RegisterForSense(TSubclassOf<UAISense_Sight>());
+		StimulusSource->RegisterWithPerceptionSystem();
+	}
 }
