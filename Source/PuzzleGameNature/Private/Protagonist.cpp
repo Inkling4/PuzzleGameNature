@@ -4,6 +4,8 @@
 #include "Protagonist.h"
 #include "InputActionValue.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AISense_Sight.h"
 
 // Sets default values
 AProtagonist::AProtagonist()
@@ -22,6 +24,10 @@ AProtagonist::AProtagonist()
 	CrowbarHitbox->OnComponentEndOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapEnd);
 	
 
+
+
+	//Stimulus Source
+	SetupStimulusSource();
 }
 
 // Called when the game starts or when spawned
@@ -243,7 +249,20 @@ void AProtagonist::LoseMoneyScrap(int32 MoneySpent)
 }
 
 
+
 void AProtagonist::CollectCrowbar()
 {
 	bHasCrowbar = true;
+}
+
+
+//Stimulus Source for bear AI to react to
+void AProtagonist::SetupStimulusSource()
+{
+	StimulusSource = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
+	if (StimulusSource)
+	{
+		StimulusSource->RegisterForSense(TSubclassOf<UAISense_Sight>());
+		StimulusSource->RegisterWithPerceptionSystem();
+	}
 }

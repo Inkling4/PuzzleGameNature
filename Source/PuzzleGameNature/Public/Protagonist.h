@@ -96,4 +96,11 @@ public:
 	//Removes input parameter from money count
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void LoseMoneyScrap(int32 MoneySpent);
+
+private:
+	// Stimulus Source for the bear AI to react to
+	class UAIPerceptionStimuliSourceComponent* StimulusSource;
+
+	void SetupStimulusSource();
+
 };
