@@ -3,14 +3,22 @@
 
 #include "Protagonist.h"
 #include "InputActionValue.h"
+#include "BreakableObject.h"
+#include "InteractableObject.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AISense_Sight.h"
 
 // Sets default values
 AProtagonist::AProtagonist()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	
+
+	//Just defaults, edit in editor if needed.
+	MaxHealth = 5;
+	MedkitPower = 3;
+	Medkits = 0;
 	
 
 	//Creates the hitbox for crowbar attacks
@@ -22,12 +30,19 @@ AProtagonist::AProtagonist()
 	CrowbarHitbox->OnComponentEndOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapEnd);
 	
 
+
+
+	//Stimulus Source
+	SetupStimulusSource();
+
 }
 
 // Called when the game starts or when spawned
 void AProtagonist::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Health = MaxHealth;
 
 	bHasCrowbar = false;
 
@@ -44,8 +59,14 @@ void AProtagonist::BeginPlay()
 		ABreakableObject* BreakableActor = Cast<ABreakableObject>(Actor);
 		BreakableObjectActors.Add(BreakableActor);
 	}
-	
 
+	//Gets all child actors of "InteractableObject"
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AInteractableObject::StaticClass(), TempBreakActors);
+	for (auto TempBreakActor : TempBreakActors)
+	{
+		AInteractableObject* InteractableActor = Cast<AInteractableObject>(TempBreakActor);
+		InteractableObjectActors.Add(InteractableActor);
+	}
 
 }
 
@@ -53,7 +74,7 @@ void AProtagonist::BeginPlay()
 void AProtagonist::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	AProtagonist::ChangeDirection();
+	//AProtagonist::ChangeDirection();
 	
 }
 
@@ -75,6 +96,7 @@ void AProtagonist::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 		Input->BindAction(IA_Jump, ETriggerEvent::Triggered, this, &AProtagonist::JumpInput);
 		Input->BindAction(IA_Interact, ETriggerEvent::Triggered, this, &AProtagonist::InteractInput);
 		Input->BindAction(IA_CrowbarAssault, ETriggerEvent::Triggered, this, &AProtagonist::CrowbarAssaultInput);
+		Input->BindAction(IA_Heal, ETriggerEvent::Triggered, this, &AProtagonist::HealInput);
 	}
 
 
@@ -100,7 +122,16 @@ void AProtagonist::JumpInput()
 
 void AProtagonist::InteractInput()
 {
-	
+	for (auto InteractableActor : InteractableObjectActors)
+	{
+		if (CrowbarHitbox == nullptr) {return;}
+		if (CrowbarHitbox->IsOverlappingActor(InteractableActor))
+		{
+			TObjectPtr<AInteractableObject> InteractableActorRef = Cast<AInteractableObject>(InteractableActor);
+			InteractableActorRef->Interact();
+		}
+
+	}
 }
 
 //Runs whenever you press the crowbar button
@@ -112,7 +143,7 @@ void AProtagonist::CrowbarAssaultInput()
 	{
 		for (auto BreakableActor : BreakableObjectActors)
 		{
-			if (IsOverlappingActor(BreakableActor))
+			if (CrowbarHitbox->IsOverlappingActor(BreakableActor))
 			{
 				TObjectPtr<ABreakableObject> BreakableActorRef = Cast<ABreakableObject>(BreakableActor);
 				BreakableActorRef->BreakObject();
@@ -124,10 +155,18 @@ void AProtagonist::CrowbarAssaultInput()
 
 
 
+void AProtagonist::HealInput()
+{
+	Heal();
+}
 
 
 
-//Function that sets rotation to velocity direction
+
+/*
+*Function that sets rotation to velocity direction.
+*No longer in use, as I just toggled a setting instead in BP.
+*/
 void AProtagonist::ChangeDirection()
 {
 	bool bGreaterThanX = false;
@@ -136,7 +175,6 @@ void AProtagonist::ChangeDirection()
 	bool bLesserThanY = false;
 	FVector Velocity = GetVelocity();
 
-	//TODO: Make diagonals have a speed threshold to make straight movement more often
 
 	//Sets booleans for if the speed is higher or lower than 0
 	if (Velocity.X > 0) { bGreaterThanX = true; }
@@ -241,9 +279,58 @@ void AProtagonist::LoseMoneyScrap(int32 MoneySpent)
 {
 	MoneyScraps -= MoneySpent;
 }
+int32 AProtagonist::GetMoneyscraps() const
+{
+	return MoneyScraps;
+}
+
 
 
 void AProtagonist::CollectCrowbar()
 {
 	bHasCrowbar = true;
+}
+
+int32 AProtagonist::GetHealth() const
+{
+	return Health;
+}
+
+bool AProtagonist::Heal()
+{
+	//Checks if you even have a medkit to use
+	if (Medkits > 0)
+	{
+		Health += MedkitPower;
+		Medkits--;
+		//Makes sure health doesn't go above max
+		if (Health > MaxHealth)
+		{
+			Health = MaxHealth;
+		}
+		return true;
+	}
+	return false;
+}
+
+void AProtagonist::GainMedkit()
+{
+	Medkits++;
+}
+
+USphereComponent* AProtagonist::GetCrowbarHitbox() const
+{
+	return CrowbarHitbox;
+}
+
+
+//Stimulus Source for bear AI to react to
+void AProtagonist::SetupStimulusSource()
+{
+	StimulusSource = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
+	if (StimulusSource)
+	{
+		StimulusSource->RegisterForSense(TSubclassOf<UAISense_Sight>());
+		StimulusSource->RegisterWithPerceptionSystem();
+	}
 }

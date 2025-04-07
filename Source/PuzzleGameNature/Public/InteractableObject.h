@@ -4,31 +4,35 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "BreakableObject.generated.h"
+#include "InteractableObject.generated.h"
+
+
+class AProtagonist;
 
 UCLASS()
-class PUZZLEGAMENATURE_API ABreakableObject : public AActor
+class PUZZLEGAMENATURE_API AInteractableObject : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ABreakableObject();
+	AInteractableObject();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	UPROPERTY(VisibleAnywhere, category = "BreakableObjects")
-	bool bIsOverlappingCrowbar;
-
 	UPROPERTY()
 	TObjectPtr<AActor> PlayerActorRef;
+	UPROPERTY()
+	TObjectPtr<AProtagonist> ProtagonistRef;
+
+	
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	UFUNCTION(CallInEditor)
-	void BreakObject();
 	
+	//Intended to be overridden
+	virtual void Interact();
+
 };

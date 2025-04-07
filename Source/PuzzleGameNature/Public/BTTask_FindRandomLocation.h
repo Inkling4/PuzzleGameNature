@@ -15,7 +15,6 @@ class PUZZLEGAMENATURE_API UBTTask_FindRandomLocation : public UBTTask_Blackboar
 	GENERATED_BODY()
 
 public:
-
 	explicit UBTTask_FindRandomLocation(FObjectInitializer const& ObjectInitializer);
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
