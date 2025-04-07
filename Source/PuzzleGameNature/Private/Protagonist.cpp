@@ -288,6 +288,10 @@ int32 AProtagonist::GetHealth() const
 {
 	return Health;
 }
+int32 AProtagonist::GetMaxHealth() const
+{
+	return MaxHealth;
+}
 
 bool AProtagonist::Heal()
 {

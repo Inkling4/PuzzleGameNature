@@ -19,5 +19,5 @@ public:
 	//Called on interact
 	UFUNCTION(BlueprintImplementableEvent)
 	void NextLevel();
-	FText 
+	
 };
