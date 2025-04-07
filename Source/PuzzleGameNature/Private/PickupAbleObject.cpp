@@ -21,7 +21,7 @@ void APickupAbleObject::BeginPlay()
 {
 	Super::BeginPlay();
 	//Points player actor ref to player actor
-	PlayerActorRef = GetWorld()->GetFirstPlayerController()->GetPawn();
+	PlayerActorRef = Cast<AActor>(GetWorld()->GetFirstPlayerController()->GetPawn());
 
 	//Points Protagonist ref to player actor
 	ProtagonistRef = Cast<AProtagonist>(PlayerActorRef);
