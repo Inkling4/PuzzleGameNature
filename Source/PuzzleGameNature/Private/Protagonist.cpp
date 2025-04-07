@@ -305,7 +305,7 @@ int32 AProtagonist::GetMaxHealth() const
 	return MaxHealth;
 }
 
-void AProtagonist::TakeDamage(int32 Damage)
+void AProtagonist::GetHurt(int32 Damage)
 {
 	Health -= Damage;
 	if (Health < 0)

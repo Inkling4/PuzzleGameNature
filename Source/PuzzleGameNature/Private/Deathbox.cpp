@@ -8,5 +8,5 @@ void ADeathbox::CollectItem()
 {
 	Super::CollectItem();
 	if (ProtagonistRef == nullptr) {return;}
-	ProtagonistRef->TakeDamage(100);
+	ProtagonistRef->GetHurt(100);
 }

@@ -143,7 +143,7 @@ public:
 	//Loses health.
 	//Damage: amount of health subtracted.
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Stats")
-	void TakeDamage(int32 Damage);
+	void GetHurt(int32 Damage);
 
 	
 	//Returns a reference to the crowbar hitbox
