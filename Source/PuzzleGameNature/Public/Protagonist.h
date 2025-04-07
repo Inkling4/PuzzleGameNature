@@ -121,6 +121,10 @@ public:
 	//Grants the player one medkit.
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void GainMedkit();
+	//Returns amount of medkits in player inventory
+	UFUNCTION(BlueprintCallable, category = "Inventory")
+	int32 GetMedkits() const;
+
 	//Returns amount of scraps the player has.
 	UFUNCTION (BlueprintCallable, category = "Inventory")
 	int32 GetMoneyscraps() const;

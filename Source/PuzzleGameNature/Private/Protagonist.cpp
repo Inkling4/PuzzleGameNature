@@ -284,6 +284,11 @@ int32 AProtagonist::GetMoneyscraps() const
 	return MoneyScraps;
 }
 
+int32 AProtagonist::GetMedkits() const
+{
+	return  Medkits;
+}
+
 
 
 void AProtagonist::CollectCrowbar()
