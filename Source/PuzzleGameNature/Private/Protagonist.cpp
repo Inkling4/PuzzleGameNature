@@ -295,6 +295,24 @@ int32 AProtagonist::GetHealth() const
 {
 	return Health;
 }
+int32 AProtagonist::GetMaxHealth() const
+{
+	return MaxHealth;
+}
+
+void AProtagonist::TakeDamage(int32 Damage)
+{
+	Health -= Damage;
+	if (Health < 0)
+	{
+		Health = 0;
+	}
+	if (Health > MaxHealth)
+	{
+		Health = MaxHealth;
+	}
+}
+
 
 bool AProtagonist::Heal()
 {

@@ -130,8 +130,18 @@ public:
 	bool Heal();
 	
 	//Returns current health of player, as an integer
+	UFUNCTION(BlueprintCallable, category = "Stats")
 	int32 GetHealth() const;
 
+	UFUNCTION(BlueprintCallable, category = "Stats")
+	int32 GetMaxHealth() const;
+
+	//Loses health.
+	//Damage: amount of health subtracted.
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Stats")
+	void TakeDamage(int32 Damage);
+
+	
 	//Returns a reference to the crowbar hitbox
 	USphereComponent* GetCrowbarHitbox() const;
 	
