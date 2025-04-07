@@ -16,8 +16,15 @@ class PUZZLEGAMENATURE_API ACameraRail : public ACameraRig_Rail
 	GENERATED_BODY()
 	//UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
 	//class UCameraComponent* Camera;
+protected:
+	virtual void Tick(float DeltaSeconds) override;
 
+	
+	
 public:
+	//Pointer to player actor
+	TObjectPtr<AActor>PlayerActorRef;
+	
 	ACameraRail(const FObjectInitializer& ObjectInitialier);
 	virtual void BeginPlay() override;
 	UFUNCTION(BlueprintCallable, category = "Rail Controls")
