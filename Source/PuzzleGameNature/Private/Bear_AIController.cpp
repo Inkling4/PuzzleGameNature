@@ -3,6 +3,7 @@
 
 #include "Bear_AIController.h"
 #include "BearAI.h"
+#include "Protagonist.h"
 #include "Perception/AISenseConfig_Sight.h"
 #include "Perception/AIPerceptionComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
@@ -52,7 +53,7 @@ void ABear_AIController::SetupPerceptionSystem()
 
 void ABear_AIController::OnTargetDetected(AActor* Actor, FAIStimulus const Stimulus)
 {
-	if (auto* const ch = Cast<ABearAI>(Actor))
+	if (auto* const ch = Cast<AProtagonist>(Actor))
 	{
 		GetBlackboardComponent()->SetValueAsBool("CanSeePlayer", Stimulus.WasSuccessfullySensed());
 	}
