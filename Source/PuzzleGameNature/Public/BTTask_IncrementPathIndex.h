@@ -16,7 +16,7 @@ class PUZZLEGAMENATURE_API UBTTask_IncrementPathIndex : public UBTTask_Blackboar
 	
 public:
 
-	explicit UBTTask_IncrementPathIndex(FObjectInitializer, const& ObjectInitializer);
+	explicit UBTTask_IncrementPathIndex(FObjectInitializer const& ObjectInitializer);
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
 private:
