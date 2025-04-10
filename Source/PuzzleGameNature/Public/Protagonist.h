@@ -61,8 +61,17 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
+	FTimerHandle CrowbarTimerHandle;
+	//Destroys overlapping crowbarhitbox breakable actors	
+	void SmashCrowbar();
 
+	//Amount of time (in seconds) it takes from when you input crowbar to when it actually destroys things.
+	//For animation syncing purposes.
+	UPROPERTY(EditAnywhere, category = "Animation")
+	float TimeToSwingCrowbar;
 
+	
 	UPROPERTY(EditAnywhere, category = "EnhancedInput")
 	class UInputMappingContext* TheInputMappingContextFile;
 	UPROPERTY(EditAnywhere, category = "EnhancedInput")
@@ -101,8 +110,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, category = "Inventory")
 	int32 Medkits;
 
+	//Animation things
+
+	//Runs whenever crowbar action succeeds
+	UFUNCTION(BlueprintImplementableEvent, category = "Animation")
+	void CrowbarAnimation();
 	
 public:	
+	
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
