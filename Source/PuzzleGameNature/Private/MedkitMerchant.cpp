@@ -24,6 +24,7 @@ void AMedkitMerchant::Interact()
 	if (ProtagonistRef == nullptr) {return;}
 	if (ProtagonistRef->GetMoneyscraps() < MedkitPrice)
 	{
+		//Called so blueprints can handle animations and cutscenes if you don't have the funds
 		InsufficientFunds();
 	}
 	else
