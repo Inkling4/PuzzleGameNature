@@ -37,3 +37,8 @@ UBehaviorTree* ABearAI::GetBehaviorTree() const
 	return Tree;
 }
 
+ABearAI_PatrolPath* ABearAI::GetBearAI_PatrolPath() const
+{
+	return BearAI_PatrolPath;
+}
+

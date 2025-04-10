@@ -14,12 +14,11 @@ AProtagonist::AProtagonist()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 	//Just defaults, edit in editor if needed.
 	MaxHealth = 5;
 	MedkitPower = 3;
 	Medkits = 0;
-	
+	TimeToSwingCrowbar = 0.6;
 
 	//Creates the hitbox for crowbar attacks
 	CrowbarHitbox = CreateDefaultSubobject<USphereComponent>("CrowbarHitbox");
@@ -141,18 +140,26 @@ void AProtagonist::CrowbarAssaultInput()
 	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, TEXT("Crowbar input called!"));
 	if (bHasCrowbar)
 	{
-		for (auto BreakableActor : BreakableObjectActors)
-		{
-			if (CrowbarHitbox->IsOverlappingActor(BreakableActor))
-			{
-				TObjectPtr<ABreakableObject> BreakableActorRef = Cast<ABreakableObject>(BreakableActor);
-				BreakableActorRef->BreakObject();
-			}
-
-		}
+		//Plays animation
+		CrowbarAnimation();
+		//Sets timer to break object
+		GetWorld()->GetTimerManager().SetTimer(CrowbarTimerHandle, this, &AProtagonist::SmashCrowbar, TimeToSwingCrowbar, false);
+		
 	}
 }
 
+void AProtagonist::SmashCrowbar()
+{
+	for (auto BreakableActor : BreakableObjectActors)
+	{
+		if (CrowbarHitbox->IsOverlappingActor(BreakableActor))
+		{
+			TObjectPtr<ABreakableObject> BreakableActorRef = Cast<ABreakableObject>(BreakableActor);
+			BreakableActorRef->BreakObject();
+		}
+
+	}
+}
 
 
 void AProtagonist::HealInput()
