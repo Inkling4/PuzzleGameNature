@@ -142,7 +142,7 @@ void AProtagonist::InteractInput()
 
 bool AProtagonist::CheckIfEveryValveIsActive()
 {
-	GetWorld()->
+	
 	
 	return true;
 }
