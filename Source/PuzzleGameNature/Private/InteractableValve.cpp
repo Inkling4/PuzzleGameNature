@@ -26,8 +26,8 @@ void AInteractableValve::Interact()
 	Super::Interact();
 	//Activates valve
 	bIsValveActive = true;
-	
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, TEXT("Valve activated!"));
+
+	ValveActivated();
 	
 	//Starts countdown for valve to turn off
 	GetWorld()->GetTimerManager().SetTimer(ValveTimerHandle, this, &AInteractableValve::DisableValve, ActiveValveTime, false);
@@ -47,7 +47,7 @@ void AInteractableValve::Interact()
 void AInteractableValve::DisableValve()
 {
 	bIsValveActive = false;
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Valve disabled!"));
+	ValveDisabled();
 }
 
 bool AInteractableValve::GetValveActivationStatus() const

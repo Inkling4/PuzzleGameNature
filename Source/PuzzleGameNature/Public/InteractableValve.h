@@ -27,12 +27,22 @@ protected:
 	UPROPERTY(BlueprintReadOnly, category = "Valve")
 	bool bIsValveActive;
 	
+	//Called whenever this valve is activated
+	UFUNCTION(BlueprintImplementableEvent, category = "Valve")
+	void ValveActivated();
+
+	//Called whenever this valve is disabled
+	UFUNCTION(BlueprintImplementableEvent, category = "Valve")
+	void ValveDisabled();
+	
 	//Sets bIsValveActive to false
 	UFUNCTION()
 	void DisableValve();
 
 	
 public:
+	
+	
 	
 	virtual void Interact() override;
 
