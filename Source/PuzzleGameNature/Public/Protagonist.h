@@ -43,14 +43,21 @@ public:
 	//Array of all actors in the world with class "Interactable Object"
 	UPROPERTY(VisibleAnywhere, category = "InteractableObjects")
 	TArray<AInteractableObject*> InteractableObjectActors;
-
-
 	
-	//Returns if every InteractableValve in level is active or not.
+	
+	//Returns whether every InteractableValve in the current level is active or not.
 	//Returns false if even a single valve is not active.
 	UFUNCTION(BlueprintCallable, category = "Valve")
 	bool CheckIfEveryValveIsActive();
 
+	//Called when you activate the last valve and every valve is active.
+	UFUNCTION(BlueprintImplementableEvent, category = "Valve")
+	void EveryValveIsActive();
+
+	//Called when you activate a valve, but not every valve is active.
+	UFUNCTION(BlueprintImplementableEvent, category = "Valve")
+	void ThereAreValvesRemaining();
+	
 protected:
 	//Amount of instances of InteractableValve there is in the current level.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, category = "Valve")

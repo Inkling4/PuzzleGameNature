@@ -31,17 +31,23 @@ void AInteractableValve::Interact()
 	
 	//Starts countdown for valve to turn off
 	GetWorld()->GetTimerManager().SetTimer(ValveTimerHandle, this, &AInteractableValve::DisableValve, ActiveValveTime, false);
-	
+
+	//Calls protagonist blueprint events
 	if (ProtagonistRef->CheckIfEveryValveIsActive())
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, TEXT("All valves activated!"));
-		
+		ProtagonistRef->EveryValveIsActive();
 	}
 	else
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Magenta, TEXT("There are more valves remaining!"));
+		ProtagonistRef->ThereAreValvesRemaining();
 	}
 	
+}
+
+void AInteractableValve::DisableValve()
+{
+	bIsValveActive = false;
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Valve disabled!"));
 }
 
 bool AInteractableValve::GetValveActivationStatus() const
@@ -50,9 +56,3 @@ bool AInteractableValve::GetValveActivationStatus() const
 }
 
 
-
-void AInteractableValve::DisableValve()
-{
-	bIsValveActive = false;
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Valve disabled!"));
-}

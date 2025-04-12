@@ -147,12 +147,14 @@ bool AProtagonist::CheckIfEveryValveIsActive()
 	{
 		if (ValveActor)
 		{
+			//Returns false if any of the valves are not activated.
 			if (!ValveActor->GetValveActivationStatus())
 			{
 				return false;
 			}
 		}
 	}
+	//Returns true because every valve passed inspection o7
 	return true;
 	
 }
