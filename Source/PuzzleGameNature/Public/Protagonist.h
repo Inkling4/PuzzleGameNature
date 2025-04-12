@@ -43,9 +43,16 @@ public:
 	//Array of all actors in the world with class "Interactable Object"
 	UPROPERTY(VisibleAnywhere, category = "InteractableObjects")
 	TArray<AInteractableObject*> InteractableObjectActors;
+
+	//Returns if every InteractableValve in level is active or not.
+	//Returns false if even a single valve is not active.
+	UFUNCTION(BlueprintCallable, category = "Valve")
+	bool CheckIfEveryValveIsActive();
+
 	
-
-
+	//Amount of instances of InteractableValve there is in the current level.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, category = "Valve")
+	int32 AmountOfValvesInLevel;
 
 	
 	//code below from: https://unrealcpp.com/on-overlap-begin/

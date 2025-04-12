@@ -5,6 +5,7 @@
 #include "InputActionValue.h"
 #include "BreakableObject.h"
 #include "InteractableObject.h"
+#include "InteractableValve.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AISense_Sight.h"
@@ -28,7 +29,7 @@ AProtagonist::AProtagonist()
 	CrowbarHitbox->OnComponentBeginOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapBegin);
 	CrowbarHitbox->OnComponentEndOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapEnd);
 	
-
+	AmountOfValvesInLevel = 0;
 
 
 	//Stimulus Source
@@ -65,6 +66,12 @@ void AProtagonist::BeginPlay()
 	{
 		AInteractableObject* InteractableActor = Cast<AInteractableObject>(TempBreakActor);
 		InteractableObjectActors.Add(InteractableActor);
+	}
+
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AInteractableValve::StaticClass(), TempBreakActors);
+	for (auto ValveActor : TempBreakActors)
+	{
+		AmountOfValvesInLevel++;
 	}
 
 }
@@ -132,6 +139,19 @@ void AProtagonist::InteractInput()
 
 	}
 }
+
+bool AProtagonist::CheckIfEveryValveIsActive()
+{
+	GetWorld()->
+	
+	return true;
+}
+
+
+
+
+
+
 
 //Runs whenever you press the crowbar button
 //Destroys any breakable object in front of the player if the player has a crowbar

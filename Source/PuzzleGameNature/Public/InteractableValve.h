@@ -32,6 +32,9 @@ protected:
 public:
 	
 	virtual void Interact() override;
+
+	//Returns bIsValveActive of this valve
+	bool GetValveActivationStatus() const;
 	
 
 

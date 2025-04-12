@@ -25,6 +25,13 @@ void AInteractableValve::Interact()
 	
 }
 
+bool AInteractableValve::GetValveActivationStatus() const
+{
+	return bIsValveActive;
+}
+
+
+
 void AInteractableValve::DisableValve()
 {
 	bIsValveActive = false;
