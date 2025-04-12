@@ -2,7 +2,7 @@
 
 
 #include "InteractableValve.h"
-
+#include "Protagonist.h"
 
 //Defaults
 AInteractableValve::AInteractableValve()
@@ -11,6 +11,15 @@ AInteractableValve::AInteractableValve()
 	bIsValveActive = false;
 	
 }
+
+void AInteractableValve::BeginPlay()
+{
+	Super::BeginPlay();
+	
+}
+
+
+
 
 void AInteractableValve::Interact()
 {
@@ -22,6 +31,16 @@ void AInteractableValve::Interact()
 	
 	//Starts countdown for valve to turn off
 	GetWorld()->GetTimerManager().SetTimer(ValveTimerHandle, this, &AInteractableValve::DisableValve, ActiveValveTime, false);
+	
+	if (ProtagonistRef->CheckIfEveryValveIsActive())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, TEXT("All valves activated!"));
+		
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Magenta, TEXT("There are more valves remaining!"));
+	}
 	
 }
 

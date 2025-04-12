@@ -15,7 +15,7 @@
 //Forward declarations
 class AInteractableObject;
 class ABreakableObject;
-
+class AInteractableValve;
 
 UCLASS()
 class PUZZLEGAMENATURE_API AProtagonist : public ACharacter
@@ -44,15 +44,24 @@ public:
 	UPROPERTY(VisibleAnywhere, category = "InteractableObjects")
 	TArray<AInteractableObject*> InteractableObjectActors;
 
+
+	
 	//Returns if every InteractableValve in level is active or not.
 	//Returns false if even a single valve is not active.
 	UFUNCTION(BlueprintCallable, category = "Valve")
 	bool CheckIfEveryValveIsActive();
 
-	
+protected:
 	//Amount of instances of InteractableValve there is in the current level.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, category = "Valve")
 	int32 AmountOfValvesInLevel;
+
+	//List of all Interactable Valves in level
+	UPROPERTY(VisibleAnywhere, category = "Valve")
+	TArray<AInteractableValve*> ValveActors;
+
+	
+public:
 
 	
 	//code below from: https://unrealcpp.com/on-overlap-begin/

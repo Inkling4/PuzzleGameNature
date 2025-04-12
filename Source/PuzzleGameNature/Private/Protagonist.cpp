@@ -72,6 +72,8 @@ void AProtagonist::BeginPlay()
 	for (auto ValveActor : TempBreakActors)
 	{
 		AmountOfValvesInLevel++;
+		AInteractableValve* ValveActorRef = Cast<AInteractableValve>(ValveActor);
+		ValveActors.Add(ValveActorRef);
 	}
 
 }
@@ -136,15 +138,23 @@ void AProtagonist::InteractInput()
 			TObjectPtr<AInteractableObject> InteractableActorRef = Cast<AInteractableObject>(InteractableActor);
 			InteractableActorRef->Interact();
 		}
-
 	}
 }
 
 bool AProtagonist::CheckIfEveryValveIsActive()
 {
-	
-	
+	for (auto ValveActor : ValveActors)
+	{
+		if (ValveActor)
+		{
+			if (!ValveActor->GetValveActivationStatus())
+			{
+				return false;
+			}
+		}
+	}
 	return true;
+	
 }
 
 

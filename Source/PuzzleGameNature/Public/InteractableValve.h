@@ -6,6 +6,7 @@
 #include "InteractableObject.h"
 #include "InteractableValve.generated.h"
 
+
 /**
  * 
  */
@@ -16,6 +17,7 @@ class PUZZLEGAMENATURE_API AInteractableValve : public AInteractableObject
 	
 protected:
 	AInteractableValve();
+	virtual void BeginPlay() override;
 	FTimerHandle ValveTimerHandle;
 	
 	//Amount of seconds the valve is active once interacted with.
@@ -28,6 +30,7 @@ protected:
 	//Sets bIsValveActive to false
 	UFUNCTION()
 	void DisableValve();
+
 	
 public:
 	
