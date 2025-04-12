@@ -31,6 +31,8 @@ AProtagonist::AProtagonist()
 	
 	AmountOfValvesInLevel = 0;
 
+	//Defaults to true, sets to false at the start of the first level.
+	bHasCrowbar = true;
 
 	//Stimulus Source
 	SetupStimulusSource();
@@ -44,7 +46,6 @@ void AProtagonist::BeginPlay()
 
 	Health = MaxHealth;
 
-	bHasCrowbar = false;
 
 	// Not currently in use for anything, which is why it's in comments.
 	
@@ -323,6 +324,12 @@ int32 AProtagonist::GetMoneyscraps() const
 	return MoneyScraps;
 }
 
+void AProtagonist::SetMoneyScraps(int32 inScrap)
+{
+	MoneyScraps = inScrap;
+}
+
+
 int32 AProtagonist::GetMedkits() const
 {
 	return  Medkits;
@@ -335,10 +342,40 @@ void AProtagonist::CollectCrowbar()
 	bHasCrowbar = true;
 }
 
+void AProtagonist::LoseCrowbar()
+{
+	bHasCrowbar = false;
+}
+
+
 int32 AProtagonist::GetHealth() const
 {
 	return Health;
 }
+
+void AProtagonist::SetHealth(int32 InHealth)
+{
+	Health = InHealth;
+	if (Health > MaxHealth)
+	{
+		Health = MaxHealth;
+	}
+	if (Health < 0)
+	{
+		Health = 0;
+	}
+}
+
+void AProtagonist::SetMedkits(int32 InMedkits)
+{
+	Medkits = InMedkits;
+	if (Medkits < 0)
+	{
+		Medkits = 0;
+	}
+}
+
+
 int32 AProtagonist::GetMaxHealth() const
 {
 	return MaxHealth;

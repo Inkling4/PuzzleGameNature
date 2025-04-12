@@ -124,6 +124,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, category = "Stats")
 	int32 MedkitPower;
+	
 
 	//Inventory system!
 	UPROPERTY(VisibleAnywhere, category = "Inventory")
@@ -151,9 +152,15 @@ public:
 	//Adds input parameter to total money count
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void CollectMoneyScrap(int32 AmountOfScrap);
-	//When called, sets bHasCrowbar to true
+	//Sets MoneyScrap to new value
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
+	void SetMoneyScraps(int32 inScrap);
+	//Sets bHasCrowbar to true
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void CollectCrowbar();
+	//Sets bHasCrowbar to false
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
+	void LoseCrowbar();
 	//Removes input parameter from money count
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void LoseMoneyScrap(int32 MoneySpent);
@@ -163,7 +170,9 @@ public:
 	//Returns amount of medkits in player inventory
 	UFUNCTION(BlueprintCallable, category = "Inventory")
 	int32 GetMedkits() const;
-
+	//Sets new value for amount of medkits.
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")	
+	void SetMedkits(int32 InMedkits);
 	//Returns amount of scraps the player has.
 	UFUNCTION (BlueprintCallable, category = "Inventory")
 	int32 GetMoneyscraps() const;
@@ -183,7 +192,12 @@ public:
 	//Damage: amount of health subtracted.
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Stats")
 	void GetHurt(int32 Damage);
+	
+	//Sets health to new value. Cannot go above Maximum health, or below 0.
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Stats")
+	void SetHealth(int32 InHealth);
 
+	
 	
 	//Returns a reference to the crowbar hitbox
 	USphereComponent* GetCrowbarHitbox() const;
