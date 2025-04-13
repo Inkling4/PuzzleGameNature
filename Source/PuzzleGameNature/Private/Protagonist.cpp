@@ -198,14 +198,19 @@ void AProtagonist::SmashCrowbar()
 void AProtagonist::HealInput()
 {
 	//Calls the heal function, and calls blueprint functions based on whether it succeeded or not.
-	if (Heal())
+	switch (Heal())
 	{
+	case 0:
 		SuccessfulHeal();
+		break;
+	case 1:
+		NoMedkits();
+		break;
+	case 2:
+		HealFailureFullHealth();
+		break;
 	}
-	else
-	{
-		CannotHeal();
-	}
+	
 }
 
 
@@ -403,7 +408,7 @@ void AProtagonist::GetHurt(int32 Damage)
 }
 
 
-bool AProtagonist::Heal()
+int32 AProtagonist::Heal()
 {
 	//Checks if you even have a medkit to use
 	if (Medkits > 0)
@@ -418,10 +423,11 @@ bool AProtagonist::Heal()
 			{
 				Health = MaxHealth;
 			}
-			return true;
+			return 0;
 		}
+		return 2;
 	}
-	return false;
+	return 1;
 }
 
 void AProtagonist::GainMedkit()
