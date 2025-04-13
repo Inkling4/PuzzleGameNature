@@ -178,8 +178,16 @@ public:
 	int32 GetMoneyscraps() const;
 
 	//Heals you MedkitPower health and spends a medkit if you have one. Returns true if healed successfully.
+	//Cannot heal on full health or with no medkits.
 	UFUNCTION(BlueprintCallable, category = "Inventory")
 	bool Heal();
+
+	UFUNCTION(BlueprintImplementableEvent, category = "Inventory")
+	void SuccessfulHeal();
+
+	//Called whenever you try to heal, but can't (because either no medkit, or full health)
+	UFUNCTION(BlueprintImplementableEvent, category = "Inventory")
+	void CannotHeal();
 	
 	//Returns current health of player, as an integer
 	UFUNCTION(BlueprintCallable, category = "Stats")
