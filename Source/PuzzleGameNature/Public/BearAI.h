@@ -6,10 +6,11 @@
 #include "BearAI_PatrolPath.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "GameFramework/Character.h"
+#include "CombatInterface.h"
 #include "BearAI.generated.h"
 
 UCLASS()
-class PUZZLEGAMENATURE_API ABearAI : public ACharacter
+class PUZZLEGAMENATURE_API ABearAI : public ACharacter, public ICombatInterface
 {
 	GENERATED_BODY()
 
