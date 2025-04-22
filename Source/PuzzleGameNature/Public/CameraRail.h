@@ -19,18 +19,20 @@ class PUZZLEGAMENATURE_API ACameraRail : public ACameraRig_Rail
 protected:
 	virtual void Tick(float DeltaSeconds) override;
 
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Rail Controls")
+	bool bIsActiveCamera;
+		ACameraRail(const FObjectInitializer& ObjectInitialier);
+    	virtual void BeginPlay() override;
+    	UFUNCTION(BlueprintCallable, category = "Rail Controls")
+    	void MoveCamera(bool bForward, float Speed);
+    	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Rail Controls")
+    	float RailSpeed;
+    	UPROPERTY(VisibleAnywhere, category = "Rail Length")
+    	float RailLength;
 	
 public:
 	//Pointer to player actor
 	TObjectPtr<AActor>PlayerActorRef;
 	
-	ACameraRail(const FObjectInitializer& ObjectInitialier);
-	virtual void BeginPlay() override;
-	UFUNCTION(BlueprintCallable, category = "Rail Controls")
-	void MoveCamera(bool bForward, float Speed);
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Rail Controls")
-	float RailSpeed;
-	UPROPERTY(VisibleAnywhere, category = "Rail Length")
-	float RailLength;
+
 };
