@@ -155,6 +155,7 @@ public:
 	
 	
 	//Teleports player to sewer goal coordinates.
+	UFUNCTION(BlueprintCallable, category = "Sewer")
 	void SewerTeleport();
 	
 	//Adds input parameter to total money count
