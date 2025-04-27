@@ -34,6 +34,8 @@ AProtagonist::AProtagonist()
 	//Defaults to true, sets to false at the start of the first level.
 	bHasCrowbar = true;
 
+	
+	
 	//Stimulus Source
 	SetupStimulusSource();
 
@@ -439,6 +441,13 @@ USphereComponent* AProtagonist::GetCrowbarHitbox() const
 {
 	return CrowbarHitbox;
 }
+
+void AProtagonist::SewerTeleport()
+{
+	SetActorLocation(SewerCoordinates);
+}
+
+
 
 
 //Stimulus Source for bear AI to react to

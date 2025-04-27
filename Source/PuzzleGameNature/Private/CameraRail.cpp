@@ -14,6 +14,8 @@ void ACameraRail::BeginPlay()
 	Super::BeginPlay();
 	//Sets variable SplineLength to the length of the rail
 	RailLength = RailSplineComponent->GetSplineLength();
+	//Makes the camera only able to move if it is the current camera.
+
 
 	//Casts 
 	PlayerActorRef = GetWorld()->GetFirstPlayerController()->GetPawn();
@@ -25,6 +27,7 @@ void ACameraRail::BeginPlay()
 ACameraRail::ACameraRail(const FObjectInitializer& ObjectInitialier) : ACameraRig_Rail(ObjectInitialier)
 {
 	PrimaryActorTick.bCanEverTick = true;
+	bIsActiveCamera = true;
 	//Put in comment because We got issues making the camera a component rather than separate actor
 	//Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
 	//Camera->SetupAttachment(RailCameraMount);
@@ -38,11 +41,14 @@ void ACameraRail::Tick(float DeltaSeconds)
 
 	if (PlayerActorRef != nullptr)
 	{
-		float PlayerSpeedX = PlayerActorRef->GetVelocity().X;
-		//Makes the speed framerate independent
-		PlayerSpeedX = PlayerSpeedX * DeltaSeconds;
-		//Moves camera every frame based on player velocity
-		MoveCamera(true, PlayerSpeedX);
+		if (bIsActiveCamera)
+		{
+			float PlayerSpeedX = PlayerActorRef->GetVelocity().X;
+			//Makes the speed framerate independent
+			PlayerSpeedX = PlayerSpeedX * DeltaSeconds;
+			//Moves camera every frame based on player velocity
+			MoveCamera(true, PlayerSpeedX);
+		}
 	}
 	
 }

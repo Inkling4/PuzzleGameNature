@@ -139,6 +139,9 @@ protected:
 	//Runs whenever crowbar action succeeds
 	UFUNCTION(BlueprintImplementableEvent, category = "Animation")
 	void CrowbarAnimation();
+
+	UPROPERTY(EditDefaultsOnly, category = "Sewer")
+	FVector SewerCoordinates {0,0,0};
 	
 public:	
 	
@@ -148,6 +151,12 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	
+	
+	//Teleports player to sewer goal coordinates.
+	UFUNCTION(BlueprintCallable, category = "Sewer")
+	void SewerTeleport();
 	
 	//Adds input parameter to total money count
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")

@@ -20,4 +20,7 @@ public:
 	//virtual void BeginPlay() override;
 	TObjectPtr<AActor> RailActorPtr;
 	TSharedPtr<ACameraRail> CameraRailPtr;
+	//Makes camera view move to the other one (max 2 cameras)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, category = "Camera Controls")
+	void NextCamera();
 };
