@@ -18,9 +18,9 @@ void UBTService_ChangeSpeed::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp,
 	Super::OnBecomeRelevant(OwnerComp, NodeMemory);
 	if (auto const Cont = OwnerComp.GetAIOwner())
 	{
-		if (auto* const BearAI = Cast<ABearAI>(Cont->GetPawn()))
+		if (auto* const npc = Cast<ABearAI>(Cont->GetPawn()))
 		{
-			BearAI->GetCharacterMovement()->MaxWalkSpeed = Speed;
+			npc->GetCharacterMovement()->MaxWalkSpeed = Speed;
 		}
 	}
 }

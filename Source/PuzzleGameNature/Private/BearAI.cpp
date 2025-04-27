@@ -42,4 +42,18 @@ ABearAI_PatrolPath* ABearAI::GetBearAI_PatrolPath() const
 	return BearAI_PatrolPath;
 }
 
+UAnimMontage* ABearAI::GetMontage() const
+{
+	return Montage;
+}
+
+int ABearAI::MeleeAttack_Implementation()
+{
+	if (Montage)
+	{
+		PlayAnimMontage(Montage);
+	}
+	return 0;
+}
+
 

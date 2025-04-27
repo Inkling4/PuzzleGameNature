@@ -7,6 +7,7 @@
 #include "BehaviorTree/BehaviorTree.h"
 #include "GameFramework/Character.h"
 #include "CombatInterface.h"
+#include "Animation/AnimMontage.h"
 #include "BearAI.generated.h"
 
 UCLASS()
@@ -28,6 +29,10 @@ public:
 
 	ABearAI_PatrolPath* GetBearAI_PatrolPath() const;
 
+	UAnimMontage* GetMontage() const;
+
+	virtual int MeleeAttack_Implementation() override;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -39,5 +44,8 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta=(AllowPrivateAccess="true"))
 	ABearAI_PatrolPath* BearAI_PatrolPath;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Animation", meta = (AllowPrivateAccess = "true"))
+	UAnimMontage* Montage;
 
 };
