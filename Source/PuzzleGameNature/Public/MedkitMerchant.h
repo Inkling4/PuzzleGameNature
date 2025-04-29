@@ -15,7 +15,7 @@ class PUZZLEGAMENATURE_API AMedkitMerchant : public AInteractableObject
 	GENERATED_BODY()
 
 protected:
-	UPROPERTY(EditAnywhere, category = "Shop")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, category = "Shop")
 	int32 MedkitPrice;
 	virtual void BeginPlay() override;
 
