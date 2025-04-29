@@ -5,6 +5,7 @@
 
 #include "Bear_AIController.h"
 #include "BearAI.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 UBTTask_FindPathPoint::UBTTask_FindPathPoint(FObjectInitializer const& ObjectInitializer) :
 	UBTTask_BlackboardBase{ ObjectInitializer }
@@ -20,17 +21,17 @@ EBTNodeResult::Type UBTTask_FindPathPoint::ExecuteTask(UBehaviorTreeComponent& O
 		//attempt to get the blackboard component from the behavior tree
 		if (auto* const bc = OwnerComp.GetBlackboardComponent())
 		{
-			//get the current pattrol index from the blackboard
-			auto const Index = bc->GetValueAsInt(GetSelectedBlackboardKey());
+			//get the current patrol index from the blackboard
+			auto const Index = bc->GetValueAsInt(GetSelectedBlackboardKey());	
 
 			//get the npc
-			if (auto* BearAI = Cast<ABearAI>(cont->GetPawn()))
+			if (auto* npc = Cast<ABearAI>(cont->GetPawn()))
 			{
 				//get the current patrol path vector from the npc
-				auto const Point = BearAI->GetBearAI_PatrolPath()->GetPatrolPoint(Index);
+				auto const Point = npc->GetBearAI_PatrolPath()->GetPatrolPoint(Index);
 
 				//convert the local vector to a global point
-				auto const GlobalPoint = BearAI->GetBearAI_PatrolPath()->GetActorTransform().TransformPosition(Point);
+				auto const GlobalPoint = npc->GetBearAI_PatrolPath()->GetActorTransform().TransformPosition(Point);
 				bc->SetValueAsVector(PatrolPathVectorKey.SelectedKeyName, GlobalPoint);
 
 				//finish with success

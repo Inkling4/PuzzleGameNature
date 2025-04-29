@@ -37,6 +37,12 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	if (PatrolPath == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("PatrolPath is null"));
+		bool abc = Destroy(true);
+	}
+
 private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta=(AllowPrivateAccess="true"))
