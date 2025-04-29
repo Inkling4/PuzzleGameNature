@@ -32,6 +32,7 @@ protected:
 	
 public:
 	//Pointer to player actor
+	UPROPERTY()
 	TObjectPtr<AActor>PlayerActorRef;
 	
 
