@@ -15,6 +15,13 @@ ABearAI::ABearAI()
 void ABearAI::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// Martin's failsafe code for non working patrol paths
+	if (BearAI_PatrolPath == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("PatrolPath is null"));
+		bool abc = Destroy(true);
+	}
 	
 }
 
@@ -41,4 +48,19 @@ ABearAI_PatrolPath* ABearAI::GetBearAI_PatrolPath() const
 {
 	return BearAI_PatrolPath;
 }
+
+UAnimMontage* ABearAI::GetMontage() const
+{
+	return Montage;
+}
+
+int ABearAI::MeleeAttack_Implementation()
+{
+	if (Montage)
+	{
+		PlayAnimMontage(Montage);
+	}
+	return 0;
+}
+
 
