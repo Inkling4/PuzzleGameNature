@@ -19,7 +19,9 @@ public:
 	// Sets default values for this actor's properties
 	APickupAbleObject();
 
+	UPROPERTY()
 	TObjectPtr<AActor> PlayerActorRef;
+	UPROPERTY()
 	TObjectPtr<AProtagonist> ProtagonistRef;
 	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
 	class USphereComponent* PickupCollision;
