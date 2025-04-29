@@ -21,17 +21,23 @@ void AMedkitMerchant::BeginPlay()
 void AMedkitMerchant::Interact()
 {
 	Super::Interact();
-	if (ProtagonistRef == nullptr) {return;}
-	if (ProtagonistRef->GetMoneyscraps() < MedkitPrice)
-	{
-		//Called so blueprints can handle animations and cutscenes if you don't have the funds
-		InsufficientFunds();
-	}
-	else
-	{
-		ProtagonistRef->LoseMoneyScrap(MedkitPrice);
-		ProtagonistRef->GainMedkit();
-		//This function is called so blueprints can handle animations and cutscenes after purchase.
-		SuccessfulPurchase();
-	}
+	//Opens shop menu on interact
+	OpenShop();
+}
+
+void AMedkitMerchant::AttemptPurchase()
+{
+		if (ProtagonistRef == nullptr) {return;}
+    	if (ProtagonistRef->GetMoneyscraps() < MedkitPrice)
+    	{
+    		//Called so blueprints can handle animations and cutscenes if you don't have the funds
+    		InsufficientFunds();
+    	}
+    	else
+    	{
+    		ProtagonistRef->LoseMoneyScrap(MedkitPrice);
+    		ProtagonistRef->GainMedkit();
+    		//This function is called so blueprints can handle animations and cutscenes after purchase.
+    		SuccessfulPurchase();
+    	}
 }

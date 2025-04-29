@@ -29,4 +29,13 @@ public:
 	//Note: Scrap and medkit math and purchase are already done by the time this function is called.
 	UFUNCTION(BlueprintImplementableEvent, category = "Shop")
 	void SuccessfulPurchase();
+	//Called when you try to actually buy a medkit
+	UFUNCTION(BlueprintCallable, category = "shop")
+	void AttemptPurchase();
+	//Blueprint function. Will make the shop widget show up on viewport.
+	UFUNCTION(BlueprintImplementableEvent, category = "Shop")
+	void OpenShop();
+	//Blueprint function. Will make the shop widget disappear from the viewport.
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, category = "Shop")
+	void CloseShop();
 };
