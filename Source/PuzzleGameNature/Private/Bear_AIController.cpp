@@ -17,9 +17,9 @@ ABear_AIController::ABear_AIController(FObjectInitializer const& ObjectInitializ
 void ABear_AIController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
-	if (ABearAI* const BearAI = Cast<ABearAI>(InPawn))
+	if (ABearAI* const npc = Cast<ABearAI>(InPawn))
 	{
-		if (UBehaviorTree* const tree = BearAI->GetBehaviorTree())
+		if (UBehaviorTree* const tree = npc->GetBehaviorTree())
 		{
 			UBlackboardComponent* b;
 			UseBlackboard(tree->BlackboardAsset, b);

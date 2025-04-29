@@ -5,6 +5,7 @@
 #include "InputActionValue.h"
 #include "BreakableObject.h"
 #include "InteractableObject.h"
+#include "InteractableValve.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AISense_Sight.h"
@@ -28,9 +29,13 @@ AProtagonist::AProtagonist()
 	CrowbarHitbox->OnComponentBeginOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapBegin);
 	CrowbarHitbox->OnComponentEndOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapEnd);
 	
+	AmountOfValvesInLevel = 0;
 
+	//Defaults to true, sets to false at the start of the first level.
+	bHasCrowbar = true;
 
-
+	
+	
 	//Stimulus Source
 	SetupStimulusSource();
 
@@ -43,7 +48,6 @@ void AProtagonist::BeginPlay()
 
 	Health = MaxHealth;
 
-	bHasCrowbar = false;
 
 	// Not currently in use for anything, which is why it's in comments.
 	
@@ -65,6 +69,14 @@ void AProtagonist::BeginPlay()
 	{
 		AInteractableObject* InteractableActor = Cast<AInteractableObject>(TempBreakActor);
 		InteractableObjectActors.Add(InteractableActor);
+	}
+
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AInteractableValve::StaticClass(), TempBreakActors);
+	for (auto ValveActor : TempBreakActors)
+	{
+		AmountOfValvesInLevel++;
+		AInteractableValve* ValveActorRef = Cast<AInteractableValve>(ValveActor);
+		ValveActors.Add(ValveActorRef);
 	}
 
 }
@@ -129,9 +141,32 @@ void AProtagonist::InteractInput()
 			TObjectPtr<AInteractableObject> InteractableActorRef = Cast<AInteractableObject>(InteractableActor);
 			InteractableActorRef->Interact();
 		}
-
 	}
 }
+
+bool AProtagonist::CheckIfEveryValveIsActive()
+{
+	for (auto ValveActor : ValveActors)
+	{
+		if (ValveActor)
+		{
+			//Returns false if any of the valves are not activated.
+			if (!ValveActor->GetValveActivationStatus())
+			{
+				return false;
+			}
+		}
+	}
+	//Returns true because every valve passed inspection o7
+	return true;
+	
+}
+
+
+
+
+
+
 
 //Runs whenever you press the crowbar button
 //Destroys any breakable object in front of the player if the player has a crowbar
@@ -164,7 +199,20 @@ void AProtagonist::SmashCrowbar()
 
 void AProtagonist::HealInput()
 {
-	Heal();
+	//Calls the heal function, and calls blueprint functions based on whether it succeeded or not.
+	switch (Heal())
+	{
+	case 0:
+		SuccessfulHeal();
+		break;
+	case 1:
+		NoMedkits();
+		break;
+	case 2:
+		HealFailureFullHealth();
+		break;
+	}
+	
 }
 
 
@@ -291,6 +339,12 @@ int32 AProtagonist::GetMoneyscraps() const
 	return MoneyScraps;
 }
 
+void AProtagonist::SetMoneyScraps(int32 inScrap)
+{
+	MoneyScraps = inScrap;
+}
+
+
 int32 AProtagonist::GetMedkits() const
 {
 	return  Medkits;
@@ -303,10 +357,40 @@ void AProtagonist::CollectCrowbar()
 	bHasCrowbar = true;
 }
 
+void AProtagonist::LoseCrowbar()
+{
+	bHasCrowbar = false;
+}
+
+
 int32 AProtagonist::GetHealth() const
 {
 	return Health;
 }
+
+void AProtagonist::SetHealth(int32 InHealth)
+{
+	Health = InHealth;
+	if (Health > MaxHealth)
+	{
+		Health = MaxHealth;
+	}
+	if (Health < 0)
+	{
+		Health = 0;
+	}
+}
+
+void AProtagonist::SetMedkits(int32 InMedkits)
+{
+	Medkits = InMedkits;
+	if (Medkits < 0)
+	{
+		Medkits = 0;
+	}
+}
+
+
 int32 AProtagonist::GetMaxHealth() const
 {
 	return MaxHealth;
@@ -326,21 +410,26 @@ void AProtagonist::GetHurt(int32 Damage)
 }
 
 
-bool AProtagonist::Heal()
+int32 AProtagonist::Heal()
 {
 	//Checks if you even have a medkit to use
 	if (Medkits > 0)
 	{
-		Health += MedkitPower;
-		Medkits--;
-		//Makes sure health doesn't go above max
-		if (Health > MaxHealth)
+		//Checks if you are on full health or not
+		if (Health < MaxHealth)
 		{
-			Health = MaxHealth;
+			Health += MedkitPower;
+			Medkits--;
+			//Makes sure health doesn't go above max
+			if (Health > MaxHealth)
+			{
+				Health = MaxHealth;
+			}
+			return 0;
 		}
-		return true;
+		return 2;
 	}
-	return false;
+	return 1;
 }
 
 void AProtagonist::GainMedkit()
@@ -352,6 +441,13 @@ USphereComponent* AProtagonist::GetCrowbarHitbox() const
 {
 	return CrowbarHitbox;
 }
+
+void AProtagonist::SewerTeleport()
+{
+	SetActorLocation(SewerCoordinates);
+}
+
+
 
 
 //Stimulus Source for bear AI to react to

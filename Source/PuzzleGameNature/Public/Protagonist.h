@@ -15,7 +15,7 @@
 //Forward declarations
 class AInteractableObject;
 class ABreakableObject;
-
+class AInteractableValve;
 
 UCLASS()
 class PUZZLEGAMENATURE_API AProtagonist : public ACharacter
@@ -44,8 +44,31 @@ public:
 	UPROPERTY(VisibleAnywhere, category = "InteractableObjects")
 	TArray<AInteractableObject*> InteractableObjectActors;
 	
+	
+	//Returns whether every InteractableValve in the current level is active or not.
+	//Returns false if even a single valve is not active.
+	UFUNCTION(BlueprintCallable, category = "Valve")
+	bool CheckIfEveryValveIsActive();
 
+	//Called when you activate the last valve and every valve is active.
+	UFUNCTION(BlueprintImplementableEvent, category = "Valve")
+	void EveryValveIsActive();
 
+	//Called when you activate a valve, but not every valve is active.
+	UFUNCTION(BlueprintImplementableEvent, category = "Valve")
+	void ThereAreValvesRemaining();
+	
+protected:
+	//Amount of instances of InteractableValve there is in the current level.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, category = "Valve")
+	int32 AmountOfValvesInLevel;
+
+	//List of all Interactable Valves in level
+	UPROPERTY(VisibleAnywhere, category = "Valve")
+	TArray<AInteractableValve*> ValveActors;
+
+	
+public:
 
 	
 	//code below from: https://unrealcpp.com/on-overlap-begin/
@@ -101,6 +124,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, category = "Stats")
 	int32 MedkitPower;
+	
 
 	//Inventory system!
 	UPROPERTY(VisibleAnywhere, category = "Inventory")
@@ -115,6 +139,9 @@ protected:
 	//Runs whenever crowbar action succeeds
 	UFUNCTION(BlueprintImplementableEvent, category = "Animation")
 	void CrowbarAnimation();
+
+	UPROPERTY(EditDefaultsOnly, category = "Sewer")
+	FVector SewerCoordinates {0,0,0};
 	
 public:	
 	
@@ -124,13 +151,25 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	
+	
+	//Teleports player to sewer goal coordinates.
+	UFUNCTION(BlueprintCallable, category = "Sewer")
+	void SewerTeleport();
 	
 	//Adds input parameter to total money count
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void CollectMoneyScrap(int32 AmountOfScrap);
-	//When called, sets bHasCrowbar to true
+	//Sets MoneyScrap to new value
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
+	void SetMoneyScraps(int32 inScrap);
+	//Sets bHasCrowbar to true
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void CollectCrowbar();
+	//Sets bHasCrowbar to false
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
+	void LoseCrowbar();
 	//Removes input parameter from money count
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")
 	void LoseMoneyScrap(int32 MoneySpent);
@@ -140,14 +179,28 @@ public:
 	//Returns amount of medkits in player inventory
 	UFUNCTION(BlueprintCallable, category = "Inventory")
 	int32 GetMedkits() const;
-
+	//Sets new value for amount of medkits.
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Inventory")	
+	void SetMedkits(int32 InMedkits);
 	//Returns amount of scraps the player has.
 	UFUNCTION (BlueprintCallable, category = "Inventory")
 	int32 GetMoneyscraps() const;
 
-	//Heals you MedkitPower health and spends a medkit if you have one. Returns true if healed successfully.
+	//Heals you MedkitPower health and spends a medkit if it succeeded.
+	//Returns 0 on success, 1 if you don't have any medkits, and 2 if you have medkits, but are at full health.
 	UFUNCTION(BlueprintCallable, category = "Inventory")
-	bool Heal();
+	int32 Heal();
+
+	UFUNCTION(BlueprintImplementableEvent, category = "Inventory")
+	void SuccessfulHeal();
+
+	//Called whenever you try to heal, but have no medkits.
+	UFUNCTION(BlueprintImplementableEvent, category = "Inventory")
+	void NoMedkits();
+
+	//Called whenever you try to heal and you do have medkits, but you are at full health.
+	UFUNCTION(BlueprintImplementableEvent, category = "Inventory")
+	void HealFailureFullHealth();
 	
 	//Returns current health of player, as an integer
 	UFUNCTION(BlueprintCallable, category = "Stats")
@@ -160,7 +213,12 @@ public:
 	//Damage: amount of health subtracted.
 	UFUNCTION(CallInEditor, BlueprintCallable, category = "Stats")
 	void GetHurt(int32 Damage);
+	
+	//Sets health to new value. Cannot go above Maximum health, or below 0.
+	UFUNCTION(CallInEditor, BlueprintCallable, category = "Stats")
+	void SetHealth(int32 InHealth);
 
+	
 	
 	//Returns a reference to the crowbar hitbox
 	USphereComponent* GetCrowbarHitbox() const;
