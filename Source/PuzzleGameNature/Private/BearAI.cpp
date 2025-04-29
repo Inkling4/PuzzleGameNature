@@ -15,6 +15,13 @@ ABearAI::ABearAI()
 void ABearAI::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// Martin's failsafe code for non working patrol paths
+	if (BearAI_PatrolPath == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("PatrolPath is null"));
+		bool abc = Destroy(true);
+	}
 	
 }
 

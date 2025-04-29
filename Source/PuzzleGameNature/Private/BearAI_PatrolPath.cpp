@@ -8,7 +8,7 @@ ABearAI_PatrolPath::ABearAI_PatrolPath()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-	PatrolPoints.Add(FVector(0, 0, 0));
+	PatrolPoints.Add(FVector(0, 0, 0)); //Martin's failsafe
 
 }
 
