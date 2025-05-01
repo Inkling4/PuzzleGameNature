@@ -36,8 +36,8 @@ void ABear_AIController::SetupPerceptionSystem()
 	{
 		SetPerceptionComponent(*CreateDefaultSubobject<UAIPerceptionComponent>(
 			TEXT("Perception Component")));
-		SightConfig->SightRadius = 500.0f;
-		SightConfig->LoseSightRadius = SightConfig->SightRadius + 300.f;
+		SightConfig->SightRadius = 1000.0f;
+		SightConfig->LoseSightRadius = SightConfig->SightRadius + 100.f;
 		SightConfig->PeripheralVisionAngleDegrees = 90.f;
 		SightConfig->SetMaxAge(5.f);
 		SightConfig->AutoSuccessRangeFromLastSeenLocation = 520.0f;
