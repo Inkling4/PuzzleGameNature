@@ -20,7 +20,9 @@ protected:
 	virtual void BeginPlay() override;
 	UPROPERTY(VisibleAnywhere, category = "BreakableObjects")
 	bool bIsOverlappingCrowbar;
-
+	//Called right before the breakable object gets destroyed.
+	UFUNCTION(BlueprintImplementableEvent, category = "BreakableObjects")
+	void OnDestroy();
 	UPROPERTY()
 	TObjectPtr<AActor> PlayerActorRef;
 

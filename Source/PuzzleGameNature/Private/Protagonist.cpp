@@ -25,9 +25,12 @@ AProtagonist::AProtagonist()
 	CrowbarHitbox = CreateDefaultSubobject<USphereComponent>("CrowbarHitbox");
 	CrowbarHitbox->SetGenerateOverlapEvents(true);
 	CrowbarHitbox->SetupAttachment(RootComponent);
+
+	/*
 	//Code from https://unrealcpp.com/on-overlap-begin/
 	CrowbarHitbox->OnComponentBeginOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapBegin);
 	CrowbarHitbox->OnComponentEndOverlap.AddDynamic(this, &AProtagonist::OnCrowbarOverlapEnd);
+	*/
 	
 	AmountOfValvesInLevel = 0;
 

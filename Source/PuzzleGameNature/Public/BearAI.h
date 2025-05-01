@@ -10,6 +10,9 @@
 #include "Animation/AnimMontage.h"
 #include "BearAI.generated.h"
 
+//Forward declaration
+class USphereComponent;
+
 UCLASS()
 class PUZZLEGAMENATURE_API ABearAI : public ACharacter, public ICombatInterface
 {
@@ -19,6 +22,13 @@ public:
 	// Sets default values for this character's properties
 	ABearAI();
 
+	void MeleeAttack();
+	
+	
+	//Returns the attack hitbox of the Bear AI
+	UFUNCTION(BlueprintCallable, category = "Bear")
+	USphereComponent* GetBearAttackHitbox() const;
+	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -37,8 +47,16 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	//Damage the bear deals to the player when it successfully hits
+	UPROPERTY(EditAnywhere, category = "Bear")
+	int32 AttackDamage;
 
 private:
+
+	
+	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
+	class USphereComponent* BearAttackHitbox;
+	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta=(AllowPrivateAccess="true"))
 	UBehaviorTree* Tree;

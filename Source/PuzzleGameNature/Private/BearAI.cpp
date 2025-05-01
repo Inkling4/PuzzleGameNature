@@ -2,6 +2,10 @@
 
 
 #include "BearAI.h"
+#include "Components/SphereComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "Protagonist.h"
+
 
 // Sets default values
 ABearAI::ABearAI()
@@ -9,6 +13,12 @@ ABearAI::ABearAI()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//Creates attack hitbox
+	BearAttackHitbox = CreateDefaultSubobject<USphereComponent>("BearAttackHitbox");
+	BearAttackHitbox->SetGenerateOverlapEvents(true);
+	BearAttackHitbox->SetupAttachment(RootComponent);
+
+	AttackDamage = 1;
 }
 
 // Called when the game starts or when spawned
@@ -54,6 +64,12 @@ UAnimMontage* ABearAI::GetMontage() const
 	return Montage;
 }
 
+USphereComponent* ABearAI::GetBearAttackHitbox() const
+{
+	return BearAttackHitbox;
+}
+
+
 int ABearAI::MeleeAttack_Implementation()
 {
 	if (Montage)
@@ -64,3 +80,20 @@ int ABearAI::MeleeAttack_Implementation()
 }
 
 
+void ABearAI::MeleeAttack()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("BearAttack called!"));
+	//Pointer to player
+	if (TObjectPtr<AProtagonist> ProtagonistRef = Cast<AProtagonist>(GetWorld()->GetFirstPlayerController()->GetPawn()))
+	{
+		//Makes sure attack only cares about the capsule, not any other hitbox
+		if (UCapsuleComponent* PlayerCapsule = Cast<UCapsuleComponent>(ProtagonistRef->GetComponentByClass(UCapsuleComponent::StaticClass())))
+		{
+			if (BearAttackHitbox->IsOverlappingComponent(PlayerCapsule))
+			{
+				ProtagonistRef->GetHurt(AttackDamage);
+			}
+		}
+	}
+
+}

@@ -39,6 +39,7 @@ EBTNodeResult::Type UBTTask_MeleeAttack::ExecuteTask(UBehaviorTreeComponent& Own
 		if (MontageHasFinished(npc))
 		{
 			icombat->Execute_MeleeAttack(npc);
+			npc->MeleeAttack();
 		}
 	}
 

@@ -36,9 +36,9 @@ void ABreakableObject::BreakObject()
 	if (PlayerActorRef == nullptr || GEngine == nullptr) {return;}
 	if (IsOverlappingActor(PlayerActorRef))
 	{
-		//GEngine->AddOnScreenDebugMessage(-1, 4.0f, FColor::Red, TEXT("Object successfully destroyed!"));
-
-		//Temporary "simulation" of the object disappearing instead of breaking. Will replace with playing an animation later
-		ABreakableObject::Destroy();
+		//Calls blueprint function
+		OnDestroy();
+		//Actor disappears
+		Destroy();
 	}
 }
