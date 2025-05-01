@@ -19,4 +19,7 @@ public:
 	//Sets crowbar to true, and deletes the actor.
 	virtual void CollectItem() override;
 	virtual void Tick(float DeltaTime) override;
+	//Called when the player picks up the crowbar.
+	UFUNCTION(BlueprintImplementableEvent, category = "CrowbarPickup")
+	void OnCrowbarPickup();
 };

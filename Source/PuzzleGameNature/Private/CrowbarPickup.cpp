@@ -11,6 +11,7 @@ void ACrowbarPickup::CollectItem()
 {
 	Super::CollectItem();
 	ProtagonistRef->CollectCrowbar();
+	OnCrowbarPickup();
 	Destroy();
 }
 
