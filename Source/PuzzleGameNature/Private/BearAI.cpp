@@ -95,5 +95,4 @@ void ABearAI::MeleeAttack()
 			}
 		}
 	}
-
 }
