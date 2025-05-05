@@ -448,6 +448,7 @@ USphereComponent* AProtagonist::GetCrowbarHitbox() const
 void AProtagonist::SewerTeleport()
 {
 	SetActorLocation(SewerCoordinates);
+	StartHintTimerSewer();
 }
 
 

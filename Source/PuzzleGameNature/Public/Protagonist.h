@@ -67,6 +67,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, category = "Valve")
 	TArray<AInteractableValve*> ValveActors;
 
+	//Used for hinting to interact
+	UFUNCTION(BlueprintImplementableEvent, category = "Valve")
+	void StartHintTimerSewer();
 	
 public:
 
