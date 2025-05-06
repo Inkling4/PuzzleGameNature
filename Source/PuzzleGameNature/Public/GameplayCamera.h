@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Camera/CameraActor.h"
-#include "CameraRail.h"
+//#include "CameraRail.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameplayCamera.generated.h"
 
@@ -18,8 +18,8 @@ class PUZZLEGAMENATURE_API AGameplayCamera : public ACameraActor
 public:
 	AGameplayCamera();
 	//virtual void BeginPlay() override;
-	TObjectPtr<AActor> RailActorPtr;
-	TSharedPtr<ACameraRail> CameraRailPtr;
+	//TObjectPtr<AActor> RailActorPtr;
+	//TSharedPtr<ACameraRail> CameraRailPtr;
 	//Makes camera view move to the other one (max 2 cameras)
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, category = "Camera Controls")
 	void NextCamera();
