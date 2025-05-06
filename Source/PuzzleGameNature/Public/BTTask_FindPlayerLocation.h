@@ -16,6 +16,7 @@ class PUZZLEGAMENATURE_API UBTTask_FindPlayerLocation : public UBTTask_Blackboar
 
 public:
 
+	// constructor for the Behavior tree task, and the execute task function
 	explicit UBTTask_FindPlayerLocation(FObjectInitializer const& ObjectInitializer);
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 

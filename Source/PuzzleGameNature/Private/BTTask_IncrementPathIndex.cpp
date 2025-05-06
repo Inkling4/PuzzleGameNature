@@ -8,6 +8,7 @@
 #include "BearAI_PatrolPath.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
+// Constructor Definition
 UBTTask_IncrementPathIndex::UBTTask_IncrementPathIndex(FObjectInitializer const& ObjectInitializer) :
 	UBTTask_BlackboardBase{ObjectInitializer}
 {

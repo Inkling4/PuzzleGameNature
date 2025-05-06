@@ -19,10 +19,11 @@ class PUZZLEGAMENATURE_API UBTTask_MeleeAttack : public UBTTask_BlackboardBase
 
 public:
 
+	// constructor for the Behavior tree task, and the execute task function
 	UBTTask_MeleeAttack();
 	EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
 private:
-
+	// Determines if the montage is finished playing. This makes sure that the montage doesn't play itself while a current montage is still playing
 	bool MontageHasFinished(ABearAI* const npc);
 };

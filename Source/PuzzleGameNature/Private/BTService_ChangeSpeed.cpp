@@ -9,6 +9,7 @@
 
 UBTService_ChangeSpeed::UBTService_ChangeSpeed()
 {
+	// Enables the service
 	bNotifyBecomeRelevant = true;
 	NodeName = TEXT("Change Speed");
 }
@@ -20,6 +21,7 @@ void UBTService_ChangeSpeed::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp,
 	{
 		if (auto* const npc = Cast<ABearAI>(Cont->GetPawn()))
 		{
+			// Gets the character movement of the npc, sets the walk speed to whatever is set
 			npc->GetCharacterMovement()->MaxWalkSpeed = Speed;
 		}
 	}

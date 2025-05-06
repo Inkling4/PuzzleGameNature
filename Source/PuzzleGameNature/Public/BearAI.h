@@ -14,6 +14,8 @@
 class USphereComponent;
 
 UCLASS()
+
+// Class also inherits from the combat interface
 class PUZZLEGAMENATURE_API ABearAI : public ACharacter, public ICombatInterface
 {
 	GENERATED_BODY()
@@ -25,7 +27,7 @@ public:
 	void MeleeAttack();
 	
 	
-	//Returns the attack hitbox of the Bear AI
+	//Returns the attack Hitbox of the Bear AI
 	UFUNCTION(BlueprintCallable, category = "Bear")
 	USphereComponent* GetBearAttackHitbox() const;
 	
@@ -35,12 +37,15 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	//Getter Functions
 	UBehaviorTree* GetBehaviorTree() const;
 
 	ABearAI_PatrolPath* GetBearAI_PatrolPath() const;
 
 	UAnimMontage* GetMontage() const;
 
+
+	// We implement the MeleeAttack here instead of in combat interface
 	virtual int MeleeAttack_Implementation() override;
 
 protected:
@@ -58,6 +63,7 @@ private:
 	class USphereComponent* BearAttackHitbox;
 	
 
+	//Sets these macros in the editor
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", meta=(AllowPrivateAccess="true"))
 	UBehaviorTree* Tree;
 

@@ -17,6 +17,7 @@ class PUZZLEGAMENATURE_API UBTTask_FindPathPoint : public UBTTask_BlackboardBase
 	
 public:
 
+
 	explicit UBTTask_FindPathPoint(FObjectInitializer const& ObjectInitializer);
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 

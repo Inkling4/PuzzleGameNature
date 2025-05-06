@@ -16,6 +16,7 @@ class PUZZLEGAMENATURE_API UBTTask_ChasePlayer : public UBTTask_BlackboardBase
 
 public:
 
+	// constructor for the Behavior tree task, and the execute task function
 	explicit UBTTask_ChasePlayer(FObjectInitializer const& ObjectInitializer);
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 

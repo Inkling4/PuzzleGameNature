@@ -15,8 +15,8 @@ public:
 	// Sets default values for this actor's properties
 	ABearAI_PatrolPath();
 
-	FVector GetPatrolPoint(int const index) const;
-	int Num() const;
+	FVector GetPatrolPoint(int const index) const; // Gets an index patrol point
+	int Num() const; // Number of patrol points in the TArray
 
 private:
 

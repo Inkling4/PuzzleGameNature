@@ -13,7 +13,7 @@ ABearAI::ABearAI()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	//Creates attack hitbox
+	//Creates attack Hitbox
 	BearAttackHitbox = CreateDefaultSubobject<USphereComponent>("BearAttackHitbox");
 	BearAttackHitbox->SetGenerateOverlapEvents(true);
 	BearAttackHitbox->SetupAttachment(RootComponent);
@@ -26,7 +26,7 @@ void ABearAI::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Martin's failsafe code for non working patrol paths
+	// Martin's failsafe code for non-working patrol paths
 	if (BearAI_PatrolPath == nullptr)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("PatrolPath is null"));

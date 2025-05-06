@@ -17,6 +17,7 @@ class PUZZLEGAMENATURE_API UBTService_ChangeSpeed : public UBTService_Blackboard
 
 public:
 
+	// constructor for the Behavior tree service, and the OnBecomeRelevant function
 	UBTService_ChangeSpeed();
 	virtual void OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 

@@ -39,7 +39,7 @@ AProtagonist::AProtagonist()
 
 	
 	
-	//Stimulus Source
+	//Stimulus Source Constructor
 	SetupStimulusSource();
 
 }
@@ -457,9 +457,11 @@ void AProtagonist::SewerTeleport()
 //Stimulus Source for bear AI to react to
 void AProtagonist::SetupStimulusSource()
 {
+	// Creates the StimulusSource
 	StimulusSource = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("Stimulus"));
 	if (StimulusSource)
 	{
+		// If successful, then registers sense in sight and registers with perception system
 		StimulusSource->RegisterForSense(TSubclassOf<UAISense_Sight>());
 		StimulusSource->RegisterWithPerceptionSystem();
 	}
