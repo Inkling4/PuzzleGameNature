@@ -1,0 +1,911 @@
+{
+	"folders": [
+		{
+			"name": "PuzzleGameNature",
+			"path": "."
+		},
+		{
+			"name": "UE5",
+			"path": "/home/kirby/Software/UnrealEngine5.6.1"
+		}
+	],
+	"settings": {
+		"typescript.tsc.autoDetect": "off",
+		"npm.autoDetect": "off",
+		"terminal.integrated.env.linux": {
+			"PATH": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Binaries/ThirdParty/DotNet/8.0.300/linux-x64:${env:PATH}",
+			"DOTNET_ROOT": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Binaries/ThirdParty/DotNet/8.0.300/linux-x64",
+			"DOTNET_HOST_PATH": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Binaries/ThirdParty/DotNet/8.0.300/linux-x64/dotnet",
+			"DOTNET_MULTILEVEL_LOOKUP": "0",
+			"DOTNET_ROLL_FORWARD": "LatestMajor"
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-dotnettools.csharp"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "PuzzleGameNature Linux Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Debug",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Debug",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNature Linux Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Debug",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"DebugGame",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"DebugGame",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNature Linux DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"DebugGame",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Development",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Development",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNature Linux Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Development",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Test Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Test",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Test Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Test",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNature Linux Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Test Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Test",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Shipping Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Shipping",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Shipping Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Shipping",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNature Linux Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature Linux Shipping Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"Linux",
+					"Shipping",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Debug",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Debug",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNature LinuxArm64 Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Debug",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNature LinuxArm64 DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Development",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Development",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNature LinuxArm64 Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Development",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Test Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Test",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Test Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Test",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNature LinuxArm64 Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Test Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Test",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Shipping Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Shipping",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Shipping Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Shipping",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNature LinuxArm64 Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNature LinuxArm64 Shipping Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNature",
+					"LinuxArm64",
+					"Shipping",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNatureEditor Linux Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNatureEditor",
+					"Linux",
+					"Debug",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNatureEditor Linux Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNatureEditor",
+					"Linux",
+					"Debug",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNatureEditor Linux Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNatureEditor Linux Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNatureEditor",
+					"Linux",
+					"Debug",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNatureEditor Linux DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNatureEditor",
+					"Linux",
+					"DebugGame",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNatureEditor Linux DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNatureEditor",
+					"Linux",
+					"DebugGame",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNatureEditor Linux DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNatureEditor Linux DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNatureEditor",
+					"Linux",
+					"DebugGame",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNatureEditor Linux Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNatureEditor",
+					"Linux",
+					"Development",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNatureEditor Linux Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNatureEditor",
+					"Linux",
+					"Development",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"PuzzleGameNatureEditor Linux Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"label": "PuzzleGameNatureEditor Linux Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"PuzzleGameNatureEditor",
+					"Linux",
+					"Development",
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch PuzzleGameNature (Debug)",
+				"request": "launch",
+				"program": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature/Binaries/Linux/UnrealGame-Linux-Debug",
+				"preLaunchTask": "PuzzleGameNature Linux Debug Build",
+				"args": [
+				],
+				"cwd": "/home/kirby/Software/UnrealEngine5.6.1",
+				"type": "cppdbg",
+				"visualizerFile": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true,
+				"sourceFileMap": {
+					"/UEVFS/PuzzleGameNature": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature",
+					"/UEVFS/Root": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"name": "Launch PuzzleGameNature (DebugGame)",
+				"request": "launch",
+				"program": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature/Binaries/Linux/UnrealGame-Linux-DebugGame",
+				"preLaunchTask": "PuzzleGameNature Linux DebugGame Build",
+				"args": [
+				],
+				"cwd": "/home/kirby/Software/UnrealEngine5.6.1",
+				"type": "cppdbg",
+				"visualizerFile": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true,
+				"sourceFileMap": {
+					"/UEVFS/PuzzleGameNature": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature",
+					"/UEVFS/Root": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"name": "Launch PuzzleGameNature (Development)",
+				"request": "launch",
+				"program": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature/Binaries/Linux/UnrealGame",
+				"preLaunchTask": "PuzzleGameNature Linux Development Build",
+				"args": [
+				],
+				"cwd": "/home/kirby/Software/UnrealEngine5.6.1",
+				"type": "cppdbg",
+				"visualizerFile": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true,
+				"sourceFileMap": {
+					"/UEVFS/PuzzleGameNature": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature",
+					"/UEVFS/Root": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"name": "Launch PuzzleGameNature (Test)",
+				"request": "launch",
+				"program": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature/Binaries/Linux/UnrealGame-Linux-Test",
+				"preLaunchTask": "PuzzleGameNature Linux Test Build",
+				"args": [
+				],
+				"cwd": "/home/kirby/Software/UnrealEngine5.6.1",
+				"type": "cppdbg",
+				"visualizerFile": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true,
+				"sourceFileMap": {
+					"/UEVFS/PuzzleGameNature": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature",
+					"/UEVFS/Root": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"name": "Launch PuzzleGameNature (Shipping)",
+				"request": "launch",
+				"program": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature/Binaries/Linux/UnrealGame-Linux-Shipping",
+				"preLaunchTask": "PuzzleGameNature Linux Shipping Build",
+				"args": [
+				],
+				"cwd": "/home/kirby/Software/UnrealEngine5.6.1",
+				"type": "cppdbg",
+				"visualizerFile": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true,
+				"sourceFileMap": {
+					"/UEVFS/PuzzleGameNature": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature",
+					"/UEVFS/Root": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"name": "Launch PuzzleGameNatureEditor (Debug)",
+				"request": "launch",
+				"program": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Binaries/Linux/UnrealEditor-Linux-Debug",
+				"preLaunchTask": "PuzzleGameNatureEditor Linux Debug Build",
+				"args": [
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject"
+				],
+				"cwd": "/home/kirby/Software/UnrealEngine5.6.1",
+				"type": "cppdbg",
+				"visualizerFile": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true,
+				"sourceFileMap": {
+					"/UEVFS/PuzzleGameNature": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature",
+					"/UEVFS/Root": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"name": "Launch PuzzleGameNatureEditor (DebugGame)",
+				"request": "launch",
+				"program": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Binaries/Linux/UnrealEditor-Linux-DebugGame",
+				"preLaunchTask": "PuzzleGameNatureEditor Linux DebugGame Build",
+				"args": [
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject"
+				],
+				"cwd": "/home/kirby/Software/UnrealEngine5.6.1",
+				"type": "cppdbg",
+				"visualizerFile": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true,
+				"sourceFileMap": {
+					"/UEVFS/PuzzleGameNature": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature",
+					"/UEVFS/Root": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"name": "Launch PuzzleGameNatureEditor (Development)",
+				"request": "launch",
+				"program": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Binaries/Linux/UnrealEditor",
+				"preLaunchTask": "PuzzleGameNatureEditor Linux Development Build",
+				"args": [
+					"/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject"
+				],
+				"cwd": "/home/kirby/Software/UnrealEngine5.6.1",
+				"type": "cppdbg",
+				"visualizerFile": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true,
+				"sourceFileMap": {
+					"/UEVFS/PuzzleGameNature": "/home/kirby/Documents/Unreal Projects/PuzzleGameNature",
+					"/UEVFS/Root": "/home/kirby/Software/UnrealEngine5.6.1"
+				}
+			},
+			{
+				"name": "Generate Project Files",
+				"type": "coreclr",
+				"request": "launch",
+				"preLaunchTask": "UnrealBuildTool Linux Development Build",
+				"program": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Build/BatchFiles/RunUBT.bat",
+				"args": [
+					"-projectfiles",
+					"-vscode",
+					"-project=/home/kirby/Documents/Unreal Projects/PuzzleGameNature/PuzzleGameNature.uproject",
+					"-game",
+					"-engine",
+					"-dotnet"
+				],
+				"env": {
+					"PATH": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Binaries/ThirdParty/DotNet/8.0.300/linux-x64:${env:PATH}",
+					"DOTNET_ROOT": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Binaries/ThirdParty/DotNet/8.0.300/linux-x64",
+					"DOTNET_HOST_PATH": "/home/kirby/Software/UnrealEngine5.6.1/Engine/Binaries/ThirdParty/DotNet/8.0.300/linux-x64/dotnet",
+					"DOTNET_MULTILEVEL_LOOKUP": "0",
+					"DOTNET_ROLL_FORWARD": "LatestMajor"
+				},
+				"console": "internalConsole",
+				"internalConsoleOptions": "openOnSessionStart",
+				"stopAtEntry": false,
+				"cwd": "/home/kirby/Software/UnrealEngine5.6.1"
+			}
+		]
+	}
+}

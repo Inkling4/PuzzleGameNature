@@ -17,7 +17,7 @@ EBTNodeResult::Type UBTTask_FindRandomLocation::ExecuteTask(UBehaviorTreeCompone
 	//gets AI Controller and it's AI npc
 	if (auto* const cont = Cast<ABear_AIController>(OwnerComp.GetAIOwner()))
 	{
-		if (auto* const npc = cont->GetPawn())
+		if (auto const npc = cont->GetPawn())
 		{
 			//obtain Bear npc Location to use as an origin
 			auto const Origin = npc->GetActorLocation();

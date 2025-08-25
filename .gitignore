@@ -81,3 +81,5 @@ DerivedDataCache/*
 .idea/.idea.PuzzleGameNature/.idea/projectSettingsUpdater.xml
 .idea/.idea.PuzzleGameNature/.idea/workspace.xml
 >>>>>>> Stashed changes
+/.idea
+/.vscode
