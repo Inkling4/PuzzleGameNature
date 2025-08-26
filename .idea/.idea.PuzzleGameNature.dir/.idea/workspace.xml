@@ -8,10 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee0cc626-3d93-47ae-98c7-8de8f5ac4c4e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzleGameNature.dir/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzleGameNature.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzleGameNature.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzleGameNature.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PuzzleGameNature.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/PuzzleGameNature.uproject" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzleGameNature/Private/BTTask_FindRandomLocation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGameNature/Private/BTTask_FindRandomLocation.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +198,7 @@
       <workItem from="1745310771783" duration="25000" />
       <workItem from="1756112153189" duration="14000" />
       <workItem from="1756112195354" duration="4000" />
-      <workItem from="1756112360832" duration="588000" />
+      <workItem from="1756112360832" duration="1428000" />
     </task>
     <servers />
   </component>
